@@ -367,13 +367,13 @@ body {
 [data-theme="dark"] .hero-bg-image { filter: brightness(0.4) saturate(0.7); }
 [data-theme="light"] .hero-bg-image { filter: brightness(0.75) saturate(0.85); }
 
-.hero-overlay {
+/*.hero-overlay {
   position: absolute;
   inset: 0;
-  /* background: var(--hero-overlay); */
+  /* background: var(--hero-overlay);
   z-index: 3;
   transition: var(--transition-theme);
-}
+}*/
 
 .orb {
   position: absolute;
@@ -986,7 +986,7 @@ body {
    FOOTER — Background image added
 ============================================ */
 .footer-section {
-  background: var(--footer-bg);
+  background: var(--footer-bg) ;
   border-top: 1px solid var(--border-color);
   padding: 60px 0 30px;
   transition: var(--transition-theme);
@@ -999,7 +999,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80&fit=crop');
+  background-image: url('./assets/abouthero2.jpeg');
   background-size: cover;
   background-position: center top;
   z-index: 0;
