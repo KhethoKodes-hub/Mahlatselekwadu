@@ -1,456 +1,1614 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Magadine Business Enterprise | Mining & Industrial Supply</title>
-  <!-- Bootstrap 5 + Icons + Google Fonts -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* ----- CUSTOM GRADIENTS & UNIQUE STYLES ----- */
-    :root {
-      --grad-primary: linear-gradient(135deg, #0B2F2F 0%, #1B4D3E 50%, #2E6B47 100%);
-      --grad-accent: linear-gradient(125deg, #D4AF37 0%, #F5D76E 100%);
-      --grad-dark: linear-gradient(145deg, #071B1B 0%, #0A2A24 100%);
-      --grad-card: linear-gradient(145deg, #FFFFFF 0%, #F8F9FC 100%);
-      --grad-footer: linear-gradient(120deg, #051412 0%, #0A2620 100%);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Magadine Business Enterprise</title>
+<link rel="icon" href="assets/magaLogo.jpeg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    body {
-      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      background: var(--grad-dark);
-      color: #F0F3F2;
-      scroll-behavior: smooth;
-    }
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* custom headings */
-    h1, h2, h3, h4, .gold-text {
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
+/* ============================================
+   THEME VARIABLES
+============================================ */
+:root {
+  --olive: #6b8e23;
+  --olive-light: #8aad35;
+  --olive-dark: #4a6218;
+  --earth: #8B4513;
+  --earth-warm: #c4692a;
+  --navy: #1e3a5f;
+  --transition-theme: all 0.5s cubic-bezier(0.4,0,0.2,1);
+}
 
-    .gold-gradient {
-      background: var(--grad-accent);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+[data-theme="dark"] {
+  --bg-primary: #0a0f0a;
+  --bg-secondary: #0d1208;
+  --bg-tertiary: #070d07;
+  --bg-mid: #050b12;
+  --bg-card: rgba(255,255,255,0.03);
+  --bg-card-hover: rgba(107,142,35,0.055);
+  --bg-glass: rgba(10,15,10,0.88);
+  --border-color: rgba(255,255,255,0.07);
+  --border-hover: rgba(107,142,35,0.22);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255,255,255,0.6);
+  --text-muted: rgba(255,255,255,0.38);
+  --text-faint: rgba(255,255,255,0.15);
+  --text-stroke: rgba(255,255,255,0.09);
+  --hero-overlay: linear-gradient(180deg, rgba(5,10,5,0.5) 0%, rgba(5,10,5,0.72) 60%, rgba(5,10,5,0.96) 100%);
+  --section-bg-1: #0a0f0a;
+  --section-bg-2: linear-gradient(180deg,#0d1208 0%,#070d07 100%);
+  --section-bg-3: linear-gradient(180deg,#050b12 0%,#070d07 100%);
+  --footer-bg: #050805;
+  --tape-shadow: #0a0f0a;
+  --scrollbar-track: #0a0f0a;
+  --nav-border: rgba(107,142,35,0.2);
+  --icon-box-olive-bg: rgba(107,142,35,0.18);
+  --icon-box-earth-bg: rgba(139,69,19,0.18);
+  --icon-box-navy-bg: rgba(30,58,95,0.28);
+  --marquee-bg: #060c06;
+  --marquee-border: rgba(107,142,35,0.06);
+  --marquee-color: rgba(255,255,255,0.17);
+  --process-step-bg: rgba(255,255,255,0.025);
+  --process-step-border: rgba(255,255,255,0.07);
+  --supply-row-hover: rgba(107,142,35,0.06);
+  --supply-row-border: rgba(255,255,255,0.06);
+  --supply-tag-bg: rgba(107,142,35,0.12);
+  --supply-tag-border: rgba(107,142,35,0.2);
+  --supply-name: white;
+  --supply-detail: rgba(255,255,255,0.38);
+  --cta-bg: rgba(255,255,255,0.02);
+  --cta-border: rgba(255,255,255,0.07);
+  --expansion-bg: linear-gradient(135deg,rgba(139,69,19,0.1),rgba(10,15,10,0.6));
+  --expansion-border: rgba(139,69,19,0.2);
+  --exp-ghost-stroke: rgba(139,69,19,0.06);
+  --exp-row-bg: rgba(255,255,255,0.03);
+  --exp-row-border: rgba(255,255,255,0.07);
+  --footer-link: rgba(255,255,255,0.35);
+  --footer-text: rgba(255,255,255,0.28);
+  --stat-lbl: rgba(255,255,255,0.28);
+  --stat-divider: rgba(255,255,255,0.06);
+  --gc-bg: rgba(255,255,255,0.03);
+  --gc-border: rgba(255,255,255,0.07);
+  --three-opacity: 0.55;
+  --svc-overlay: linear-gradient(180deg,transparent 20%,rgba(10,15,10,0.96) 100%);
+  --chip-bg: rgba(107,142,35,0.18);
+  --chip-border: rgba(107,142,35,0.28);
+  --chip-color: var(--olive-light);
+  --process-step-text: rgba(255,255,255,0.42);
+}
 
-    .bg-gradient-primary {
-      background: var(--grad-primary);
-    }
+[data-theme="light"] {
+  --bg-primary: #f8f5ee;
+  --bg-secondary: #f0ebe0;
+  --bg-tertiary: #ede6d8;
+  --bg-mid: #e8e0d0;
+  --bg-card: rgba(255,255,255,0.85);
+  --bg-card-hover: rgba(107,142,35,0.08);
+  --bg-glass: rgba(248,245,238,0.94);
+  --border-color: rgba(107,142,35,0.15);
+  --border-hover: rgba(107,142,35,0.35);
+  --text-primary: #1a1a0a;
+  --text-secondary: rgba(30,30,15,0.7);
+  --text-muted: rgba(30,30,15,0.55);
+  --text-faint: rgba(30,30,15,0.2);
+  --text-stroke: rgba(30,30,15,0.1);
+  --hero-overlay: linear-gradient(180deg, rgba(248,245,238,0.12) 0%, rgba(248,245,238,0.52) 60%, rgba(248,245,238,0.93) 100%);
+  --section-bg-1: #f8f5ee;
+  --section-bg-2: linear-gradient(180deg,#f0ebe0 0%,#ede6d8 100%);
+  --section-bg-3: linear-gradient(180deg,#e8e0d0 0%,#f0ebe0 100%);
+  --footer-bg: #e0d8c8;
+  --tape-shadow: #f8f5ee;
+  --scrollbar-track: #f8f5ee;
+  --nav-border: rgba(107,142,35,0.25);
+  --icon-box-olive-bg: rgba(107,142,35,0.14);
+  --icon-box-earth-bg: rgba(139,69,19,0.12);
+  --icon-box-navy-bg: rgba(30,58,95,0.1);
+  --marquee-bg: #ede6d8;
+  --marquee-border: rgba(107,142,35,0.12);
+  --marquee-color: rgba(30,30,15,0.45);
+  --process-step-bg: rgba(255,255,255,0.88);
+  --process-step-border: rgba(107,142,35,0.14);
+  --supply-row-hover: rgba(107,142,35,0.08);
+  --supply-row-border: rgba(107,142,35,0.12);
+  --supply-tag-bg: rgba(107,142,35,0.12);
+  --supply-tag-border: rgba(107,142,35,0.22);
+  --supply-name: #1a1a0a;
+  --supply-detail: rgba(30,30,15,0.5);
+  --cta-bg: rgba(255,255,255,0.65);
+  --cta-border: rgba(107,142,35,0.15);
+  --expansion-bg: linear-gradient(135deg,rgba(139,69,19,0.08),rgba(248,245,238,0.9));
+  --expansion-border: rgba(139,69,19,0.2);
+  --exp-ghost-stroke: rgba(139,69,19,0.08);
+  --exp-row-bg: rgba(255,255,255,0.8);
+  --exp-row-border: rgba(107,142,35,0.14);
+  --footer-link: rgba(30,30,15,0.5);
+  --footer-text: rgba(30,30,15,0.35);
+  --stat-lbl: rgba(30,30,15,0.4);
+  --stat-divider: rgba(107,142,35,0.12);
+  --gc-bg: rgba(255,255,255,0.85);
+  --gc-border: rgba(107,142,35,0.14);
+  --three-opacity: 0.18;
+  --svc-overlay: linear-gradient(180deg,transparent 15%,rgba(5,5,5,0.97) 100%);
+  --chip-bg: rgba(107,142,35,0.2);
+  --chip-border: rgba(107,142,35,0.35);
+  --chip-color: var(--olive-dark);
+  --process-step-text: rgba(30,30,15,0.58);
+}
 
-    .bg-gradient-card {
-      background: var(--grad-card);
-      color: #1E2F2A;
-      border: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: var(--transition-theme);
+}
 
-    .bg-gradient-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.4);
-    }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--olive), var(--earth)); border-radius: 3px; }
 
-    .btn-gold {
-      background: linear-gradient(115deg, #D4AF37 0%, #E6C45E 100%);
-      border: none;
-      color: #0A261F;
-      font-weight: 600;
-      padding: 10px 30px;
-      border-radius: 40px;
-      transition: all 0.25s;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-    }
+/* ============================================
+   THREE.JS CANVAS
+============================================ */
+#three-canvas {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+  opacity: var(--three-opacity);
+  transition: opacity 0.6s ease;
+}
 
-    .btn-gold:hover {
-      transform: scale(1.02);
-      background: linear-gradient(115deg, #E2BC44 0%, #F5DE6E 100%);
-      color: #05100E;
-      box-shadow: 0 10px 18px rgba(0,0,0,0.25);
-    }
+/* ============================================
+   THEME TOGGLE — Side Panel
+============================================ */
+.theme-toggle {
+  position: fixed; top: 50%; right: 0;
+  transform: translateY(-50%); z-index: 99999;
+}
+.theme-toggle-track {
+  width: 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-right: none; border-radius: 28px 0 0 28px;
+  padding: 10px 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  box-shadow: -6px 0 30px rgba(0,0,0,0.2);
+  backdrop-filter: blur(20px);
+  transition: var(--transition-theme);
+  cursor: pointer; position: relative; overflow: hidden;
+}
+.theme-toggle-track::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(107,142,35,0.08), rgba(139,69,19,0.05));
+  opacity: 0; transition: opacity 0.4s;
+}
+.theme-toggle-track:hover::before { opacity: 1; }
+.toggle-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative; z-index: 1;
+}
+.toggle-icon.sun { background: linear-gradient(135deg,#f5c842,#e8a020); color: #1a0a00; box-shadow: 0 0 16px rgba(245,200,66,0.5); }
+.toggle-icon.moon { background: linear-gradient(135deg,#1e3a5f,#2d4f7c); color: #a8c4e8; box-shadow: 0 0 16px rgba(30,58,95,0.5); }
+.toggle-label {
+  font-family: 'Space Mono', monospace; font-size: 0.45rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted); writing-mode: vertical-rl; padding: 4px 0;
+  transition: var(--transition-theme);
+}
+.theme-toggle-pip {
+  position: absolute; left: 6px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--olive-light);
+  transition: top 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 0 8px rgba(138,173,53,0.8);
+}
+[data-theme="dark"] .theme-toggle-pip { top: 14px; }
+[data-theme="light"] .theme-toggle-pip { top: 56px; }
 
-    .btn-outline-gold {
-      border: 2px solid #D4AF37;
-      background: transparent;
-      color: #D4AF37;
-      border-radius: 40px;
-      font-weight: 500;
-      transition: 0.2s;
-    }
+.theme-toggle-mobile {
+  display: none; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border-color);
+  cursor: pointer; transition: var(--transition-theme);
+  font-size: 1rem; color: var(--text-primary);
+}
 
-    .btn-outline-gold:hover {
-      background: #D4AF37;
-      color: #0A261F;
-    }
+/* ============================================
+   NAVBAR
+============================================ */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 9999; transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.navbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 40px; transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.navbar.scrolled .navbar-inner {
+  padding: 12px 40px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--nav-border);
+}
+.nav-logo img { height: 72px; width: auto; transition: height 0.4s ease; filter: drop-shadow(0 4px 12px rgba(107,142,35,0.4)); }
+.navbar.scrolled .nav-logo img { height: 48px; }
+.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.95rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-primary); text-decoration: none;
+  padding: 8px 16px; border-radius: 6px;
+  transition: all 0.3s ease; position: relative; opacity: 0.85;
+}
+[data-theme="dark"] .nav-links a { color: rgba(255,255,255,0.85); }
+[data-theme="light"] .nav-links a { color: rgba(20,20,10,0.85); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 4px; left: 16px; right: 16px;
+  height: 2px; background: linear-gradient(90deg, var(--olive), var(--earth));
+  transform: scaleX(0); transition: transform 0.3s ease; transform-origin: left;
+}
+[data-theme="dark"] .nav-links a:hover, [data-theme="dark"] .nav-links a.active { color: white; background: rgba(107,142,35,0.12); opacity: 1; }
+[data-theme="light"] .nav-links a:hover, [data-theme="light"] .nav-links a.active { color: var(--olive-dark); background: rgba(107,142,35,0.1); opacity: 1; }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+.nav-cta {
+  background: linear-gradient(135deg, var(--olive) 0%, var(--earth) 100%) !important;
+  color: white !important; padding: 10px 24px !important; border-radius: 50px !important;
+  font-weight: 700 !important; box-shadow: 0 4px 20px rgba(107,142,35,0.4); opacity: 1 !important;
+}
+.nav-cta:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 30px rgba(107,142,35,0.6) !important; }
+.nav-cta::after { display: none !important; }
 
-    .navbar {
-      background: rgba(5, 20, 18, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-    }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; z-index: 99999; position: relative; }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--text-primary); transition: all 0.3s ease; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 1.6rem;
-      background: linear-gradient(125deg, #F5E7A3, #D4AF37);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+.mobile-menu {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg-glass); backdrop-filter: blur(30px);
+  z-index: 9998; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 20px;
+  transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu a {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.1em;
+  color: var(--text-secondary); text-decoration: none; transition: all 0.3s ease;
+}
+.mobile-menu a:hover { color: var(--olive-light); transform: scale(1.05); }
+.mobile-menu .mob-cta {
+  background: linear-gradient(135deg, var(--olive) 0%, var(--earth) 100%);
+  color: white !important; padding: 16px 48px; border-radius: 50px;
+  font-size: 1.5rem !important; margin-top: 20px;
+  box-shadow: 0 8px 30px rgba(107,142,35,0.5);
+}
 
-    .nav-link {
-      font-weight: 500;
-      color: #E9ECEB;
-      margin: 0 6px;
-      transition: 0.2s;
-    }
+/* ============================================
+   PAGE HERO
+============================================ */
+.page-hero {
+  position: relative; min-height: 82vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; padding-top: 100px;
+}
+.hero-bg-image {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80&fit=crop');
+  background-size: cover; background-position: center 30%;
+  z-index: 1; transition: filter 0.6s ease;
+}
+[data-theme="dark"] .hero-bg-image { filter: brightness(0.35) saturate(0.7); }
+[data-theme="light"] .hero-bg-image { filter: brightness(0.6) saturate(0.8); }
 
-    .nav-link:hover {
-      color: #F5D76E;
-    }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: var(--hero-overlay); z-index: 2; transition: var(--transition-theme);
+}
+.hero-vignette {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(5,10,5,0.6) 100%);
+  transition: opacity 0.6s;
+}
+[data-theme="light"] .hero-vignette { opacity: 0.4; }
 
-    .hero-section {
-      background: radial-gradient(circle at 10% 20%, #0B2F2F, #031210);
-      padding: 100px 0 90px;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-    }
+.hero-grid-bg {
+  position: absolute; inset: 0; z-index: 3;
+  background-image:
+    linear-gradient(rgba(107,142,35,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107,142,35,0.045) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: gridDrift 60s linear infinite;
+  transition: opacity 0.6s;
+}
+[data-theme="light"] .hero-grid-bg { opacity: 0.5; }
+@keyframes gridDrift { 0%{transform:translateY(0)} 100%{transform:translateY(80px)} }
 
-    .hero-img-placeholder {
-      background: rgba(255,255,240,0.03);
-      border-radius: 48px;
-      backdrop-filter: blur(4px);
-      padding: 20px;
-    }
+.hero-orbs { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); animation: orbFloat 18s ease-in-out infinite; }
+.orb-a { width:380px;height:380px;background:rgba(107,142,35,0.12);top:-100px;right:5%; }
+.orb-b { width:260px;height:260px;background:rgba(139,69,19,0.09);bottom:0;left:3%;animation-delay:-7s; }
+.orb-c { width:180px;height:180px;background:rgba(30,58,95,0.1);top:40%;left:40%;animation-delay:-13s; }
+[data-theme="light"] .orb-a { background: rgba(107,142,35,0.18); }
+[data-theme="light"] .orb-b { background: rgba(139,69,19,0.14); }
+@keyframes orbFloat { 0%,100%{transform:translate(0,0)} 33%{transform:translate(30px,-30px)} 66%{transform:translate(-20px,20px)} }
 
-    .stat-badge {
-      background: rgba(212, 175, 55, 0.15);
-      backdrop-filter: blur(4px);
-      border-radius: 80px;
-      padding: 8px 22px;
-      display: inline-block;
-      font-weight: 500;
-      color: #F5D76E;
-    }
+.page-hero-content { position:relative;z-index:10;text-align:center;max-width:1000px;padding:0 24px; }
 
-    .section-title {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 2rem;
-    }
-    .section-title:after {
-      content: '';
-      position: absolute;
-      bottom: -12px;
-      left: 0;
-      width: 70px;
-      height: 3px;
-      background: var(--grad-accent);
-      border-radius: 3px;
-    }
+.hero-eyebrow {
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(107,142,35,0.15);border:1px solid rgba(107,142,35,0.4);
+  backdrop-filter:blur(10px);padding:8px 20px;border-radius:50px;
+  font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--olive-light);margin-bottom:2rem;
+  animation: slideUp 0.9s 0.2s both;
+}
+.e-dot { width:8px;height:8px;border-radius:50%;background:var(--olive-light);animation:pulseRing 2s ease-in-out infinite; }
+@keyframes pulseRing { 0%,100%{box-shadow:0 0 0 0 rgba(138,173,53,0.7)} 50%{box-shadow:0 0 0 8px rgba(138,173,53,0)} }
 
-    .card-icon {
-      font-size: 2.6rem;
-      background: linear-gradient(135deg, #1E5542, #0F3A2F);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1rem;
-    }
+.page-mega-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,11vw,10rem);
+  line-height:0.9;letter-spacing:0.02em;margin-bottom:1.5rem;
+  animation: slideUp 1.1s 0.5s both;
+}
+.t-white { display:block;color:white;text-shadow:0 2px 40px rgba(0,0,0,0.5); }
+.t-grad {
+  display:block;
+  background:linear-gradient(135deg,var(--olive-light) 0%,var(--earth-warm) 60%,#f5c842 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s linear 1.6s infinite;
+}
+.t-ghost { display:block;color:rgba(255,255,255,0.18);-webkit-text-stroke:1px rgba(255,255,255,0.22); }
+@keyframes shimmer { 0%{background-position:0% center} 100%{background-position:200% center} }
 
-    footer a {
-      text-decoration: none;
-      color: #C2C9C7;
-      transition: 0.2s;
-    }
-    footer a:hover {
-      color: #F5D76E;
-    }
+.page-subtitle {
+  font-family:'Barlow',sans-serif;font-size:clamp(1rem,2.2vw,1.2rem);font-weight:400;
+  color:rgba(255,255,255,0.82);text-shadow:0 1px 20px rgba(0,0,0,0.6);
+  max-width:620px;margin:0 auto 2.5rem;line-height:1.75;
+  animation:slideUp 1s 0.8s both;
+}
+@keyframes slideUp { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:translateY(0)} }
 
-    .quote-card {
-      border-left: 5px solid #D4AF37;
-      background: rgba(255,255,245,0.05);
-      backdrop-filter: blur(8px);
-    }
+/* Floating hero icons */
+.hero-float-icon {
+  position:absolute;pointer-events:none;z-index:4;
+  animation:floatIco 16s ease-in-out infinite;
+  transition: opacity 0.6s;
+}
+[data-theme="dark"] .hero-float-icon { opacity:0.07; }
+[data-theme="light"] .hero-float-icon { opacity:0.1; }
+@keyframes floatIco { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-22px) rotate(8deg)} }
 
-    @media (max-width: 768px) {
-      .hero-section {
-        padding: 60px 0;
-        text-align: center;
-      }
-    }
-  </style>
+.scroll-hint {
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:fadeIn 1s 1.5s both;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.s-mouse { width:24px;height:38px;border:2px solid rgba(255,255,255,0.35);border-radius:12px;position:relative; }
+.s-mouse::before {
+  content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);
+  width:3px;height:8px;background:rgba(107,142,35,0.9);border-radius:2px;
+  animation:scrollDn 2s ease-in-out infinite;
+}
+@keyframes scrollDn { 0%,100%{transform:translateX(-50%) translateY(0);opacity:1} 100%{transform:translateX(-50%) translateY(14px);opacity:0} }
+.s-label { font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:rgba(255,255,255,0.3); }
+
+/* ============================================
+   TAPE
+============================================ */
+.tape-section {
+  position:relative;height:68px;
+  background:var(--bg-primary);overflow:hidden;display:flex;align-items:center;
+  transition:var(--transition-theme);
+}
+.tape-track-wrap { position:relative;width:100%;height:48px;overflow:hidden; }
+.tape-inner-tilt { width:100%;height:48px;overflow:hidden; }
+.tilt-m { transform:rotate(-1deg);margin:0 -20px; }
+.tilt-p { transform:rotate(0.8deg);margin:0 -20px; }
+.tape-runner { display:flex;width:max-content;height:100%; }
+.t-march { animation:tmarch 22s linear infinite; }
+.t-march-r { animation:tmarch 18s linear infinite reverse; }
+@keyframes tmarch { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.t-seg { display:flex;align-items:center;padding:0 18px;height:48px;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.28em;white-space:nowrap; }
+.t-y { background:#f5c842;color:#0a0f0a; }
+.t-b { background:#0a0a0a;color:#f5c842; }
+[data-theme="light"] .t-b { background:#2a2a1a; }
+.tfl { position:absolute;top:0;left:0;bottom:0;width:80px;background:linear-gradient(90deg,var(--bg-primary),transparent);z-index:2;transition:var(--transition-theme); }
+.tfr { position:absolute;top:0;right:0;bottom:0;width:80px;background:linear-gradient(-90deg,var(--bg-primary),transparent);z-index:2;transition:var(--transition-theme); }
+
+/* ============================================
+   MARQUEE
+============================================ */
+.marquee-strip {
+  background:var(--marquee-bg);padding:18px 0;
+  border-bottom:1px solid var(--marquee-border);transition:var(--transition-theme);
+}
+.mq-wrap { overflow:hidden; }
+.mq-track { display:flex;width:max-content;animation:mqRoll 28s linear infinite; }
+@keyframes mqRoll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.mq-item {
+  display:flex;align-items:center;gap:14px;padding:0 26px;
+  font-family:'Barlow Condensed',sans-serif;font-size:0.88rem;
+  font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+  white-space:nowrap;color:var(--marquee-color);transition:var(--transition-theme);
+}
+.mq-item i { color:var(--olive); }
+.mq-dot { width:5px;height:5px;border-radius:50%;background:var(--olive);flex-shrink:0; }
+
+/* ============================================
+   SECTIONS
+============================================ */
+.s-dark { background:var(--section-bg-1);position:relative;padding:110px 0;overflow:hidden;transition:var(--transition-theme); }
+.s-mid { background:var(--section-bg-3);position:relative;padding:110px 0;overflow:hidden;transition:var(--transition-theme); }
+.s-alt { background:var(--section-bg-2);position:relative;padding:110px 0;overflow:hidden;transition:var(--transition-theme); }
+
+.container { max-width:1280px;margin:0 auto;padding:0 32px; }
+
+.sec-label {
+  font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--olive-light);margin-bottom:1rem;
+  display:flex;align-items:center;gap:12px;
+}
+.sec-label::before { content:'';width:36px;height:1px;background:linear-gradient(90deg,var(--olive),transparent); }
+.sec-label::after { content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(107,142,35,0.22),transparent); }
+
+.sec-heading {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.8rem,6.5vw,5.5rem);
+  line-height:0.95;letter-spacing:0.02em;margin-bottom:1.5rem;
+  color:var(--text-primary);transition:var(--transition-theme);
+}
+.grad-text {
+  background:linear-gradient(135deg,var(--olive-light) 0%,var(--earth-warm) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.ghost-text { color:transparent;-webkit-text-stroke:1px var(--text-stroke);transition:var(--transition-theme); }
+
+/* ============================================
+   GLASS CARD
+============================================ */
+.gc {
+  background:var(--gc-bg);border:1px solid var(--gc-border);
+  border-radius:20px;backdrop-filter:blur(10px);
+  transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+}
+.gc::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--olive),transparent);
+  opacity:0;transition:opacity 0.4s;
+}
+.gc:hover { background:var(--bg-card-hover);border-color:var(--border-hover);transform:translateY(-8px);box-shadow:0 28px 60px rgba(0,0,0,0.12),0 0 36px rgba(107,142,35,0.07); }
+.gc:hover::before { opacity:1; }
+
+/* ============================================
+   SERVICE HERO CARDS (always dark — image-backed)
+============================================ */
+.svc-card {
+  position:relative;border-radius:24px;overflow:hidden;cursor:pointer;
+  transition:all 0.6s cubic-bezier(0.4,0,0.2,1);
+  background:#141a14;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+}
+.svc-card:hover { transform:scale(1.025);box-shadow:0 40px 80px rgba(0,0,0,0.5); }
+.svc-bg {
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  transition:transform 0.8s cubic-bezier(0.4,0,0.2,1),filter 0.5s ease;
+  filter:brightness(0.42) saturate(0.72);
+}
+.svc-card:hover .svc-bg { transform:scale(1.07);filter:brightness(0.34) saturate(0.8); }
+[data-theme="light"] .svc-bg { filter:brightness(0.5) saturate(0.8); }
+[data-theme="light"] .svc-card:hover .svc-bg { filter:brightness(0.4) saturate(0.85); }
+.svc-overlay {
+  position:absolute;inset:0;
+  background: var(--svc-overlay);
+  transition:var(--transition-theme);
+}
+.svc-num {
+  position:absolute;top:20px;left:24px;
+  font-family:'Bebas Neue',sans-serif;font-size:5rem;letter-spacing:0.02em;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.1);
+  line-height:1;pointer-events:none;transition:all 0.5s ease;
+}
+.svc-card:hover .svc-num { -webkit-text-stroke-color:rgba(107,142,35,0.28); }
+.svc-arrow {
+  position:absolute;top:22px;right:22px;width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;color:white;font-size:0.85rem;
+  transition:all 0.4s ease;
+}
+.svc-card:hover .svc-arrow { background:linear-gradient(135deg,var(--olive),var(--earth));border-color:transparent;transform:rotate(45deg); }
+.svc-content {
+  position:absolute;bottom:0;left:0;right:0;padding:28px;
+  transform:translateY(12px);transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.svc-card:hover .svc-content { transform:translateY(0); }
+.svc-tag {
+  display:inline-block;background:linear-gradient(135deg,var(--olive),var(--earth));color:white;
+  font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;
+  padding:4px 14px;border-radius:50px;margin-bottom:10px;
+}
+.svc-title { font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.04em;color:white;margin-bottom:6px; }
+.svc-desc {
+  font-size:0.88rem;color:rgba(255,255,255,0.68);line-height:1.6;
+  max-height:0;overflow:hidden;transition:max-height 0.5s ease;
+}
+.svc-card:hover .svc-desc { max-height:120px; }
+.svc-chips {
+  display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;
+  max-height:0;overflow:hidden;transition:max-height 0.5s ease;
+}
+.svc-card:hover .svc-chips { max-height:80px; }
+.chip {
+  background:var(--chip-bg);border:1px solid var(--chip-border);color:var(--chip-color);
+  font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;letter-spacing:0.05em;
+  padding:4px 12px;border-radius:50px;
+}
+/* Override chip for cards (always shown over dark image) */
+.svc-card .chip { background:rgba(107,142,35,0.22);border-color:rgba(107,142,35,0.38);color:#b8d860; }
+
+/* ============================================
+   ICON BOXES
+============================================ */
+.ibox {
+  width:60px;height:60px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;flex-shrink:0;
+  transition:transform 0.4s ease;
+}
+.gc:hover .ibox, .process-step:hover .ibox { transform:scale(1.1) rotate(5deg); }
+.ib-olive { background:var(--icon-box-olive-bg);border:1px solid rgba(107,142,35,0.28);color:var(--olive-light); }
+.ib-earth { background:var(--icon-box-earth-bg);border:1px solid rgba(139,69,19,0.28);color:var(--earth-warm); }
+.ib-navy { background:var(--icon-box-navy-bg);border:1px solid rgba(30,58,95,0.32);color:#5a8ec0; }
+
+/* ============================================
+   PROCESS STEPS
+============================================ */
+.process-step {
+  display:flex;gap:24px;align-items:flex-start;padding:32px;
+  border-radius:20px;
+  background:var(--process-step-bg);border:1px solid var(--process-step-border);
+  transition:all 0.5s cubic-bezier(0.4,0,0.2,1);
+  position:relative;overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+.process-step::before {
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--olive),var(--earth));
+  transform:scaleY(0);transition:transform 0.4s ease;transform-origin:top;
+}
+.process-step:hover { background:var(--bg-card-hover);border-color:var(--border-hover);transform:translateX(6px);box-shadow:0 16px 40px rgba(0,0,0,0.1); }
+.process-step:hover::before { transform:scaleY(1); }
+.step-num {
+  font-family:'Bebas Neue',sans-serif;font-size:3.5rem;
+  background:linear-gradient(135deg,var(--olive-light),var(--earth-warm));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;flex-shrink:0;width:60px;text-align:center;
+}
+.process-title {
+  font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;
+  letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--text-primary);margin-bottom:8px;transition:var(--transition-theme);
+}
+.process-text { color:var(--process-step-text);font-size:0.9rem;line-height:1.65;transition:var(--transition-theme); }
+
+/* ============================================
+   SUPPLY LIST ROWS
+============================================ */
+.supply-row {
+  display:flex;align-items:center;gap:16px;padding:20px 24px;
+  border-radius:14px;border:1px solid var(--supply-row-border);
+  transition:all 0.4s ease;cursor:default;
+  background:var(--gc-bg);
+  box-shadow:0 2px 10px rgba(0,0,0,0.04);
+}
+.supply-row:hover { background:var(--supply-row-hover);border-color:var(--border-hover);transform:translateX(6px); }
+.supply-name {
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;
+  letter-spacing:0.05em;text-transform:uppercase;color:var(--supply-name);transition:var(--transition-theme);
+}
+.supply-detail { font-size:0.82rem;color:var(--supply-detail);margin-top:2px;transition:var(--transition-theme); }
+.supply-tag {
+  margin-left:auto;background:var(--supply-tag-bg);border:1px solid var(--supply-tag-border);
+  color:var(--olive-light);font-family:'Space Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.1em;padding:4px 10px;border-radius:20px;flex-shrink:0;
+  transition:var(--transition-theme);
+}
+[data-theme="light"] .supply-tag { color:var(--olive-dark); }
+
+/* ============================================
+   STATS STRIP IN CATALOGUE
+============================================ */
+.stat-num {
+  font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;
+  background:linear-gradient(135deg,var(--olive-light),var(--earth-warm));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-lbl {
+  font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--stat-lbl);transition:var(--transition-theme);
+}
+.stat-divider { width:1px;height:50px;background:var(--stat-divider);flex-shrink:0;transition:var(--transition-theme); }
+
+/* ============================================
+   EXPANSION CARD
+============================================ */
+.expansion-card {
+  background:var(--expansion-bg);border:1px solid var(--expansion-border);
+  border-radius:24px;padding:52px;position:relative;overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,0.08);transition:var(--transition-theme);
+}
+.expansion-card::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--earth),var(--olive),var(--earth));
+}
+.exp-ghost {
+  position:absolute;right:-20px;bottom:-30px;
+  font-family:'Bebas Neue',sans-serif;font-size:12rem;
+  color:transparent;-webkit-text-stroke:1px var(--exp-ghost-stroke);
+  pointer-events:none;line-height:1;transition:var(--transition-theme);
+}
+.exp-heading {
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);
+  color:var(--text-primary);letter-spacing:0.03em;line-height:0.95;margin-bottom:1.2rem;
+  transition:var(--transition-theme);
+}
+.exp-para { color:var(--text-muted);font-size:0.95rem;line-height:1.75;transition:var(--transition-theme); }
+.exp-row {
+  display:flex;align-items:center;gap:14px;padding:18px 20px;
+  border-radius:14px;background:var(--exp-row-bg);border:1px solid var(--exp-row-border);
+  transition:var(--transition-theme);
+  box-shadow:0 2px 10px rgba(0,0,0,0.04);
+}
+.exp-row-title {
+  font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;
+  letter-spacing:0.05em;text-transform:uppercase;color:var(--text-primary);transition:var(--transition-theme);
+}
+.exp-row-sub { font-size:0.82rem;color:var(--text-muted);transition:var(--transition-theme); }
+
+/* Coming-soon badge */
+.coming-badge {
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(139,69,19,0.15);border:1px solid rgba(139,69,19,0.28);
+  padding:6px 18px;border-radius:50px;margin-bottom:20px;
+  transition:var(--transition-theme);
+}
+.coming-badge i { color:var(--earth-warm);font-size:0.75rem; }
+.coming-badge span { font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--earth-warm); }
+
+/* ============================================
+   CTA
+============================================ */
+.cta-glass {
+  background:var(--cta-bg);border:1px solid var(--cta-border);
+  border-radius:28px;padding:72px 60px;text-align:center;
+  position:relative;overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,0.08);transition:var(--transition-theme);
+}
+.cta-glass::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--olive),var(--earth),var(--navy));
+}
+.cta-orb { position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;animation:orbFloat 16s ease-in-out infinite; }
+.cta-heading {
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,5rem);
+  letter-spacing:0.03em;color:var(--text-primary);line-height:0.95;margin-bottom:1.2rem;
+  transition:var(--transition-theme);
+}
+.cta-sub { color:var(--text-muted);max-width:480px;margin:0 auto 2.5rem;line-height:1.75;font-size:0.97rem;transition:var(--transition-theme); }
+
+/* Buttons */
+.btn-primary {
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--olive) 0%,var(--earth) 100%);
+  color:white;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:1.05rem;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;padding:16px 40px;border-radius:50px;
+  box-shadow:0 8px 28px rgba(107,142,35,0.38);
+  position:relative;overflow:hidden;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.btn-primary::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--earth) 0%,var(--olive) 100%);opacity:0;transition:opacity 0.4s; }
+.btn-primary:hover::before { opacity:1; }
+.btn-primary:hover { transform:translateY(-4px);box-shadow:0 14px 42px rgba(107,142,35,0.55);color:white; }
+.btn-primary span,.btn-primary i { position:relative;z-index:1; }
+
+.btn-ghost {
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gc-bg);color:var(--text-primary);
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  font-size:1.05rem;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;padding:16px 36px;border-radius:50px;
+  border:1px solid var(--border-color);backdrop-filter:blur(10px);
+  transition:all 0.4s ease;
+}
+.btn-ghost:hover { background:var(--bg-card-hover);border-color:var(--border-hover);transform:translateY(-4px);color:var(--text-primary); }
+
+/* ============================================
+   FOOTER
+============================================ */
+.footer-section {
+  background:var(--footer-bg);border-top:1px solid var(--border-color);
+  padding:60px 0 30px;transition:var(--transition-theme);
+}
+.footer-link { color:var(--footer-link);text-decoration:none;font-size:0.9rem;transition:color 0.3s; }
+.footer-link:hover { color:var(--olive-light); }
+
+/* ============================================
+   BACK TO TOP
+============================================ */
+#btt {
+  position:fixed;bottom:30px;right:60px;width:50px;height:50px;border-radius:50%;
+  background:linear-gradient(135deg,var(--olive),var(--earth));
+  color:white;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;box-shadow:0 6px 22px rgba(107,142,35,0.38);
+  opacity:0;pointer-events:none;
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);z-index:9000;
+}
+#btt.show { opacity:1;pointer-events:all; }
+#btt:hover { transform:translateY(-4px);box-shadow:0 10px 30px rgba(107,142,35,0.55); }
+
+/* ============================================
+   SCROLL REVEAL
+============================================ */
+.rv { opacity:0;transform:translateY(38px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1); }
+.rv-l { opacity:0;transform:translateX(-38px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1); }
+.rv-r { opacity:0;transform:translateX(38px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1); }
+.rved { opacity:1 !important;transform:translate(0) !important; }
+.d1{transition-delay:0.1s!important} .d2{transition-delay:0.2s!important}
+.d3{transition-delay:0.3s!important} .d4{transition-delay:0.4s!important}
+.d5{transition-delay:0.5s!important}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media(max-width:1024px){
+  .navbar-inner{padding:16px 24px;}
+  .navbar.scrolled .navbar-inner{padding:10px 24px;}
+  .cta-glass,.expansion-card{padding:40px 32px;}
+  .services-grid-top,.services-grid-bottom{grid-template-columns:1fr 1fr!important;}
+  .catalogue-grid{grid-template-columns:1fr!important;gap:40px;}
+  .expansion-inner{grid-template-columns:1fr!important;gap:32px;}
+}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .nav-logo img{height:52px;}
+  .s-dark,.s-mid,.s-alt{padding:80px 0;}
+  .cta-glass,.expansion-card{padding:28px 20px;}
+  .process-step{flex-direction:column;gap:12px;}
+  .svc-card{height:280px!important;}
+  .theme-toggle{display:none;}
+  .theme-toggle-mobile{display:flex!important;}
+  .services-grid-top,.services-grid-bottom{grid-template-columns:1fr!important;}
+  .exp-ghost{display:none;}
+}
+@media(max-width:480px){
+  .page-mega-title{font-size:3.2rem;}
+}
+
+@media(max-width:900px){
+  .footer-grid-inner{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:560px){
+  .footer-grid-inner{grid-template-columns:1fr!important;}
+}
+</style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg fixed-top py-3">
-  <div class="container">
-    <a class="navbar-brand" href="#">⚙️ Magadine Business Enterprise</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#story">Her Story</a></li>
-        <li class="nav-item"><a class="nav-link" href="#supply">What We Supply</a></li>
-        <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Connect</a></li>
-      </ul>
+<!-- Three.js Canvas -->
+<canvas id="three-canvas"></canvas>
+
+<!-- =====================================================
+     THEME TOGGLE — Side Panel
+====================================================== -->
+<div class="theme-toggle" id="themeSideToggle">
+  <div class="theme-toggle-track" id="themeTrackBtn">
+    <div class="theme-toggle-pip" id="themePip"></div>
+    <div class="toggle-icon moon" id="toggleIconMoon"><i class="fas fa-moon"></i></div>
+    <div class="toggle-label">MODE</div>
+    <div class="toggle-icon sun" id="toggleIconSun"><i class="fas fa-sun"></i></div>
+  </div>
+</div>
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo" aria-label="Magadine Home">
+      <img src="assets/magatransprentlogo.png" style="width:150px;height:auto;" alt="Magadine Business Enterprise">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html#contactForm" class="nav-cta">Get Quote</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="theme-toggle-mobile" id="themeMobileBtn" title="Toggle theme">
+        <i class="fas fa-moon" id="mobileToggleIcon"></i>
+      </div>
+      <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </div>
 </nav>
 
-<!-- Hero Section (Home) -->
-<section id="home" class="hero-section">
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html#contactForm" class="mob-cta">Get Quote</a>
+</div>
+
+<!-- =====================================================
+     PAGE HERO
+====================================================== -->
+<section class="page-hero">
+  <div class="hero-bg-image"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orbs">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+  </div>
+
+  <!-- Decorative floating icons -->
+  <i class="fas fa-hard-hat hero-float-icon" style="top:16%;left:5%;font-size:5rem;color:rgba(107,142,35,1);animation-duration:16s;"></i>
+  <i class="fas fa-shield-alt hero-float-icon" style="top:22%;right:7%;font-size:6.5rem;color:rgba(139,69,19,1);animation-duration:20s;animation-delay:-7s;"></i>
+  <i class="fas fa-fire-extinguisher hero-float-icon" style="bottom:22%;left:6%;font-size:4.5rem;color:rgba(107,142,35,1);animation-duration:14s;animation-delay:-4s;"></i>
+  <i class="fas fa-tools hero-float-icon" style="bottom:28%;right:4%;font-size:3.5rem;color:rgba(139,69,19,1);animation-duration:18s;animation-delay:-11s;"></i>
+
+  <div class="page-hero-content">
+    <div class="hero-eyebrow">
+      <span class="e-dot"></span>
+      Comprehensive Supply Solutions · Mining &amp; Industrial
+      <span class="e-dot"></span>
+    </div>
+    <h1 class="page-mega-title">
+      <span class="t-white">What We</span>
+      <span class="t-grad">Supply</span>
+      <span class="t-ghost">&amp; Serve</span>
+    </h1>
+    <p class="page-subtitle">
+      From PPE safety equipment to mining consumables and industrial hygiene — delivering every order with a purposeful sense of urgency, every time.
+    </p>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="s-mouse"></div>
+    <span class="s-label">Scroll to explore</span>
+  </div>
+</section>
+
+<!-- =====================================================
+     TAPE 1
+====================================================== -->
+<div class="tape-section">
+  <div class="tfl"></div><div class="tfr"></div>
+  <div class="tape-track-wrap">
+    <div class="tape-inner-tilt tilt-m">
+      <div class="tape-runner t-march" id="tape1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     MARQUEE STRIP
+====================================================== -->
+<div class="marquee-strip">
+  <div class="mq-wrap">
+    <div class="mq-track" id="mqTrack"></div>
+  </div>
+</div>
+
+<!-- =====================================================
+     SERVICE CARDS HERO GRID
+====================================================== -->
+<section class="s-dark" id="services">
   <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-7">
-        <div class="stat-badge mb-3"><i class="fas fa-hard-hat me-2"></i> 100% Black women-owned | Established 2016</div>
-        <h1 class="display-3 fw-bold mb-3">Resilience. <span class="gold-gradient">Supply.</span> Purpose.</h1>
-        <p class="lead mb-4">Magadine Business Enterprise – trusted mining & industrial supply partner based in Steelpoort, Limpopo. Supplying PPE, safety gear, hygiene products and industrial consumables to mining houses, municipalities, and industrial clients across South Africa.</p>
-        <div class="d-flex flex-wrap gap-3">
-          <a href="#supply" class="btn btn-gold"><i class="fas fa-helmet-safety me-2"></i> Explore our supply</a>
-          <a href="#story" class="btn btn-outline-gold"><i class="fas fa-heart me-2"></i> Meet Mahlatse</a>
-        </div>
-        <div class="mt-5 d-flex gap-4 flex-wrap">
-          <div><i class="fas fa-check-circle gold-gradient me-1"></i> B-BBEE compliant</div>
-          <div><i class="fas fa-check-circle gold-gradient me-1"></i> Industry relationships</div>
-          <div><i class="fas fa-check-circle gold-gradient me-1"></i> Resilient leadership</div>
+
+    <div class="rv" style="text-align:center;margin-bottom:5rem;">
+      <div class="sec-label" style="justify-content:center;">Our Core Services</div>
+      <h2 class="sec-heading" style="text-align:center;">
+        Six Ways We<br>
+        <span class="grad-text">Serve You</span>
+      </h2>
+      <p style="color:var(--text-muted);max-width:560px;margin:1rem auto;line-height:1.7;font-size:0.95rem;transition:var(--transition-theme);">
+        Every service category is backed by reliable stock, technical knowledge, and Magadine's promise of urgency.
+      </p>
+    </div>
+
+    <!-- Row 1: 3 tall cards -->
+    <div class="services-grid-top" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px;">
+
+      <div class="svc-card rv d1" style="height:440px;">
+        <div class="svc-bg" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80');"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-num">01</div>
+        <div class="svc-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="svc-content">
+          <span class="svc-tag">Mining</span>
+          <div class="svc-title">Mining Supplies</div>
+          <div class="svc-desc">Complete range of mining consumables, tools, and equipment for underground and surface operations across Limpopo's mining belt.</div>
+          <div class="svc-chips">
+            <span class="chip">Cable Ties</span><span class="chip">Helmets</span>
+            <span class="chip">Safety Boots</span><span class="chip">Dromex Gloves</span>
+          </div>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div class="hero-img-placeholder text-center p-4">
-          <i class="fas fa-industry fa-5x gold-gradient mb-3"></i>
-          <i class="fas fa-hard-hat fa-5x gold-gradient mx-2"></i>
-          <i class="fas fa-tools fa-5x gold-gradient mx-2"></i>
-          <p class="mt-4 fst-italic text-light-emphasis">Steelpoort, Limpopo — heart of mining supply</p>
+
+      <div class="svc-card rv d2" style="height:440px;">
+        <div class="svc-bg" style="background-image:url('https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=800&q=80');"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-num">02</div>
+        <div class="svc-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="svc-content">
+          <span class="svc-tag">Safety</span>
+          <div class="svc-title">PPE &amp; Safety</div>
+          <div class="svc-desc">Personal protective equipment that meets international standards — because every worker deserves to go home safe.</div>
+          <div class="svc-chips">
+            <span class="chip">Harnesses</span><span class="chip">Respirators</span>
+            <span class="chip">Fire Risk</span><span class="chip">Chem Gloves</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card rv d3" style="height:440px;">
+        <div class="svc-bg" style="background-image:url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80');"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-num">03</div>
+        <div class="svc-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="svc-content">
+          <span class="svc-tag">Emergency</span>
+          <div class="svc-title">Fire Risk Equipment</div>
+          <div class="svc-desc">Critical emergency response gear — fire blankets, extinguishers, and first-response kits for mining and industrial environments.</div>
+          <div class="svc-chips">
+            <span class="chip">Extinguishers</span><span class="chip">Fire Blankets</span>
+            <span class="chip">Emergency Kits</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: 3 shorter cards -->
+    <div class="services-grid-bottom" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+
+      <div class="svc-card rv d2" style="height:310px;">
+        <div class="svc-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80');"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-num" style="font-size:3.5rem;">04</div>
+        <div class="svc-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="svc-content">
+          <span class="svc-tag">Hygiene</span>
+          <div class="svc-title">Cleaning &amp; Hygiene</div>
+          <div class="svc-desc">Industrial hygiene kits, sanitisers, washroom supplies, and our own manufactured hand cleaners with grit.</div>
+          <div class="svc-chips">
+            <span class="chip">Cleaning Kits</span><span class="chip">Hand Cleaners</span><span class="chip">Sanitisers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card rv d3" style="height:310px;">
+        <div class="svc-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80');"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-num" style="font-size:3.5rem;">05</div>
+        <div class="svc-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="svc-content">
+          <span class="svc-tag">Office</span>
+          <div class="svc-title">Stationery &amp; Office</div>
+          <div class="svc-desc">Complete office supply solutions from Typek paper to clipboards — keeping site offices running smoothly.</div>
+          <div class="svc-chips">
+            <span class="chip">Typek Paper</span><span class="chip">Pens &amp; Markers</span><span class="chip">Clipboards</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card rv d4" style="height:310px;">
+        <div class="svc-bg" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80');"></div>
+        <div class="svc-overlay"></div>
+        <div class="svc-num" style="font-size:3.5rem;">06</div>
+        <div class="svc-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="svc-content">
+          <span class="svc-tag">Industrial</span>
+          <div class="svc-title">Construction Tape</div>
+          <div class="svc-desc">High-visibility caution, barrier, and warning tapes in all sizes and colours, plus cable ties for every application.</div>
+          <div class="svc-chips">
+            <span class="chip">Caution Tape</span><span class="chip">Barrier Tape</span><span class="chip">Cable Ties</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TAPE 2 -->
+<div class="tape-section" style="height:58px;">
+  <div class="tfl"></div><div class="tfr"></div>
+  <div class="tape-track-wrap">
+    <div class="tape-inner-tilt tilt-p">
+      <div class="tape-runner t-march-r" id="tape2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- =====================================================
+     FULL SUPPLY CATALOGUE
+====================================================== -->
+<section class="s-mid" id="catalogue">
+  <div class="container">
+    <div class="catalogue-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+
+      <!-- Left -->
+      <div class="rv-l">
+        <div class="sec-label">Full Catalogue</div>
+        <h2 class="sec-heading">
+          Everything<br>
+          <span class="grad-text">We Stock</span>
+        </h2>
+        <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.75;margin-bottom:2rem;transition:var(--transition-theme);">
+          500+ products across all categories, always available. If it's not listed, ask — we source on demand for our partners.
+        </p>
+
+        <div class="gc" style="padding:32px;margin-bottom:1.5rem;">
+          <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+            <div style="text-align:center;min-width:80px;">
+              <div class="stat-num">500+</div>
+              <div class="stat-lbl">Products</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div style="text-align:center;min-width:60px;">
+              <div class="stat-num">6</div>
+              <div class="stat-lbl">Categories</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div style="text-align:center;min-width:60px;">
+              <div class="stat-num">24h</div>
+              <div class="stat-lbl">Response</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="contact.html" class="btn-primary" style="display:inline-flex;">
+          <i class="fas fa-paper-plane"></i>
+          <span>Request Quote</span>
+        </a>
+      </div>
+
+      <!-- Right: supply rows -->
+      <div class="rv-r">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+
+          <div class="supply-row d1">
+            <div class="ibox ib-olive" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-hard-hat"></i></div>
+            <div>
+              <div class="supply-name">Safety Helmets</div>
+              <div class="supply-detail">All classes · Full-brim &amp; vented options available</div>
+            </div>
+            <span class="supply-tag">PPE</span>
+          </div>
+
+          <div class="supply-row d2">
+            <div class="ibox ib-earth" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-mitten"></i></div>
+            <div>
+              <div class="supply-name">Dromex Gloves Range</div>
+              <div class="supply-detail">Chemical, cut-resistant, general &amp; impact protection</div>
+            </div>
+            <span class="supply-tag">PPE</span>
+          </div>
+
+          <div class="supply-row d2">
+            <div class="ibox ib-olive" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-shield-alt"></i></div>
+            <div>
+              <div class="supply-name">Safety Harnesses</div>
+              <div class="supply-detail">Full-body fall arrest systems · SANS compliant</div>
+            </div>
+            <span class="supply-tag">Height Safety</span>
+          </div>
+
+          <div class="supply-row d3">
+            <div class="ibox ib-earth" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-fire-extinguisher"></i></div>
+            <div>
+              <div class="supply-name">Fire Extinguishers &amp; Blankets</div>
+              <div class="supply-detail">CO₂, dry powder, wet chemical · All site types</div>
+            </div>
+            <span class="supply-tag">Fire Risk</span>
+          </div>
+
+          <div class="supply-row d3">
+            <div class="ibox ib-olive" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-lungs"></i></div>
+            <div>
+              <div class="supply-name">Respiratory Masks</div>
+              <div class="supply-detail">Dust, half-face &amp; full-face respirators available</div>
+            </div>
+            <span class="supply-tag">PPE</span>
+          </div>
+
+          <div class="supply-row d4">
+            <div class="ibox ib-navy" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-tape"></i></div>
+            <div>
+              <div class="supply-name">Construction &amp; Caution Tape</div>
+              <div class="supply-detail">High-visibility · All colours &amp; widths</div>
+            </div>
+            <span class="supply-tag">Site Safety</span>
+          </div>
+
+          <div class="supply-row d4">
+            <div class="ibox ib-olive" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-broom"></i></div>
+            <div>
+              <div class="supply-name">Industrial Cleaning Kits</div>
+              <div class="supply-detail">Incl. hand cleaners with grit (own manufacture)</div>
+            </div>
+            <span class="supply-tag">Hygiene</span>
+          </div>
+
+          <div class="supply-row d5">
+            <div class="ibox ib-earth" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-box"></i></div>
+            <div>
+              <div class="supply-name">1-Ton Textile Bags</div>
+              <div class="supply-detail">Custom produced · Bulk industrial storage &amp; transport</div>
+            </div>
+            <span class="supply-tag">Manufacturing</span>
+          </div>
+
+          <div class="supply-row d5">
+            <div class="ibox ib-navy" style="width:44px;height:44px;font-size:1.1rem;"><i class="fas fa-pen"></i></div>
+            <div>
+              <div class="supply-name">Stationery &amp; Office</div>
+              <div class="supply-detail">Typek, highlighters, clipboards, hole punches &amp; more</div>
+            </div>
+            <span class="supply-tag">Office</span>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Her Story: Resilience Beyond Adversity -->
-<section id="story" class="py-5" style="background: var(--grad-dark);">
-  <div class="container py-4">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="text-center mb-5">
-          <span class="stat-badge"><i class="fas fa-feather-alt me-1"></i> Courage & Transformation</span>
-          <h2 class="display-5 fw-bold mt-3">Her Story: <span class="gold-gradient">Resilience Beyond Adversity</span></h2>
+<!-- =====================================================
+     HOW WE WORK — PROCESS
+====================================================== -->
+<section class="s-alt" id="process">
+  <div class="container" style="max-width:900px;">
+
+    <div class="rv" style="text-align:center;margin-bottom:5rem;">
+      <div class="sec-label" style="justify-content:center;">Our Process</div>
+      <h2 class="sec-heading" style="text-align:center;">
+        How We<br>
+        <span class="grad-text">Deliver</span>
+      </h2>
+      <p style="color:var(--text-muted);max-width:500px;margin:1rem auto;font-size:0.95rem;line-height:1.7;transition:var(--transition-theme);">
+        Purposeful urgency isn't just a phrase — it's built into every step of how we work.
+      </p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+      <div class="process-step rv d1">
+        <div class="step-num">01</div>
+        <div>
+          <div class="ibox ib-olive" style="margin-bottom:12px;width:46px;height:46px;font-size:1.1rem;"><i class="fas fa-phone-alt"></i></div>
+          <h4 class="process-title">Enquiry &amp; Quote</h4>
+          <p class="process-text">Contact us via phone, email, or our quote form. We respond within 24 hours with a detailed, competitive quote tailored to your exact requirements.</p>
         </div>
-        <div class="row g-5 align-items-center">
-          <div class="col-md-6">
-            <div class="bg-gradient-card p-4 rounded-4 h-100">
-              <i class="fas fa-quote-left fa-3x gold-gradient opacity-50 mb-3"></i>
-              <p class="fs-5" style="font-weight: 500;">“My condition is not a disability — it is a different ability. Limitations can be transformed into purpose.”</p>
-              <hr class="gold-gradient opacity-25">
-              <p class="mb-0"><strong>Mahlatse Lekwadu</strong> – Entrepreneur, Co-Founder, MBA graduate (2021)</p>
+      </div>
+
+      <div class="process-step rv d2">
+        <div class="step-num">02</div>
+        <div>
+          <div class="ibox ib-earth" style="margin-bottom:12px;width:46px;height:46px;font-size:1.1rem;"><i class="fas fa-clipboard-check"></i></div>
+          <h4 class="process-title">Order Confirmation</h4>
+          <p class="process-text">Once your order is confirmed, we check our live stock levels and source any additional items immediately — no waiting, no delays.</p>
+        </div>
+      </div>
+
+      <div class="process-step rv d3">
+        <div class="step-num">03</div>
+        <div>
+          <div class="ibox ib-olive" style="margin-bottom:12px;width:46px;height:46px;font-size:1.1rem;"><i class="fas fa-boxes"></i></div>
+          <h4 class="process-title">Pick, Pack &amp; Quality Check</h4>
+          <p class="process-text">Every order is hand-packed and quality-checked at our Steelpoort Mine Supplier Park hub before leaving our facility.</p>
+        </div>
+      </div>
+
+      <div class="process-step rv d4">
+        <div class="step-num">04</div>
+        <div>
+          <div class="ibox ib-navy" style="margin-bottom:12px;width:46px;height:46px;font-size:1.1rem;"><i class="fas fa-truck-fast"></i></div>
+          <h4 class="process-title">Delivery &amp; Support</h4>
+          <p class="process-text">We deliver across Thaba Chweu and Greater Tubatse with urgency. Post-delivery support is always available — your satisfaction is our measure of success.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     EXPANSION CARD
+====================================================== -->
+<section class="s-dark" style="padding:80px 0;">
+  <div class="container">
+    <div class="expansion-card rv">
+      <div class="exp-ghost" aria-hidden="true">NEXT</div>
+      <div class="expansion-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1;">
+
+        <div>
+          <div class="coming-badge">
+            <i class="fas fa-rocket"></i>
+            <span>Coming Soon</span>
+          </div>
+          <h3 class="exp-heading">
+            Expanding Into<br>
+            <span class="grad-text">Construction</span>
+          </h3>
+          <p class="exp-para">
+            Magadine has identified construction supply as our next major growth area. We're already manufacturing specialised products and planning to offer full construction supply services to sites across Limpopo.
+          </p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="exp-row">
+            <div class="ibox ib-olive" style="width:46px;height:46px;font-size:1.1rem;flex-shrink:0;margin:0;"><i class="fas fa-pump-soap"></i></div>
+            <div>
+              <div class="exp-row-title">Hand Cleaners with Grit</div>
+              <div class="exp-row-sub">Own manufacture · already in production</div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="text-white-50">
-              <p><strong class="text-gold">Mahlatse's journey</strong> is deeply rooted in resilience. Raised in a challenging environment, she took on responsibilities at a young age, helping care for her siblings and contributing to her household. These early experiences shaped her strength, independence, and determination.</p>
-              <p>Later in life, she faced one of her greatest challenges when she was diagnosed with <strong>Guillain-Barré Syndrome</strong>, a neurological condition that affected her mobility and basic functioning. During this time, she was unable to perform everyday tasks and became dependent on her children for care. She was also <strong>declared permanently incapacitated</strong>, a reality that took time to accept.</p>
-              <p>Despite these challenges, Mahlatse refused to let her condition define her. Through <strong>faith, perseverance, and rehabilitation</strong>, she rebuilt her strength, both physically and mentally. She describes her condition not as a disability, but as a <strong class="gold-gradient">“different ability”</strong>, a mindset that continues to guide her life and leadership.</p>
-              <div class="mt-3"><i class="fas fa-star-of-life gold-gradient me-2"></i> After the passing of her husband — who founded the business — she stepped in to lead and grow the company, transforming it into a trusted supplier with established industry relationships.</div>
+          <div class="exp-row">
+            <div class="ibox ib-earth" style="width:46px;height:46px;font-size:1.1rem;flex-shrink:0;margin:0;"><i class="fas fa-box"></i></div>
+            <div>
+              <div class="exp-row-title">1-Ton Textile Bags</div>
+              <div class="exp-row-sub">Custom production · bulk industrial orders</div>
             </div>
           </div>
+          <div class="exp-row">
+            <div class="ibox ib-navy" style="width:46px;height:46px;font-size:1.1rem;flex-shrink:0;margin:0;"><i class="fas fa-hard-hat"></i></div>
+            <div>
+              <div class="exp-row-title">Construction Supply Services</div>
+              <div class="exp-row-sub">Full site supply · coming 2025–2026</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     CTA
+====================================================== -->
+<section class="s-mid" style="padding:80px 0;">
+  <div class="container" style="max-width:900px;">
+    <div class="cta-glass rv">
+      <div class="cta-orb" style="width:300px;height:300px;background:rgba(107,142,35,0.06);top:-80px;right:-80px;"></div>
+      <div class="cta-orb" style="width:200px;height:200px;background:rgba(139,69,19,0.05);bottom:-60px;left:-60px;animation-delay:-8s;"></div>
+      <div style="position:relative;z-index:1;">
+        <div class="sec-label" style="justify-content:center;margin-bottom:1.5rem;">Start an Order</div>
+        <h2 class="cta-heading">
+          Ready to<br>
+          <span class="grad-text">Place an Order?</span>
+        </h2>
+        <p class="cta-sub">
+          Whether you need a single item or a full site supply run — contact Magadine and we'll respond with purposeful urgency.
+        </p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="contact.html" class="btn-primary">
+            <i class="fas fa-paper-plane"></i>
+            <span>Get a Quote</span>
+          </a>
+          <a href="products.html" class="btn-ghost">
+            <span>Browse Products</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- What We Supply -->
-<section id="supply" class="py-5" style="background: #071816;">
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+<footer class="footer-section">
   <div class="container">
-    <div class="text-center mb-5">
-      <span class="stat-badge"><i class="fas fa-boxes me-1"></i> Core Supply Categories</span>
-      <h2 class="display-5 fw-bold mt-2">Mining & Industrial <span class="gold-gradient">Supply Solutions</span></h2>
-      <p class="lead w-75 mx-auto">Magadine Business Enterprise supplies PPE, safety equipment, hygiene products and industrial consumables to mining houses, municipalities, and industrial clients.</p>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-gradient-card rounded-4 p-4 text-center h-100">
-          <div class="card-icon"><i class="fas fa-helmet-safety"></i></div>
-          <h4 class="fw-bold">PPE</h4>
-          <p class="text-secondary-emphasis">High-quality personal protective equipment for mining & industrial workforce: helmets, gloves, footwear, vests, and full-body protection.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-gradient-card rounded-4 p-4 text-center h-100">
-          <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-          <h4 class="fw-bold">Safety Equipment</h4>
-          <p class="text-secondary-emphasis">Harnesses, fall arrest systems, gas detectors, emergency showers, safety signs, and compliance gear.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-gradient-card rounded-4 p-4 text-center h-100">
-          <div class="card-icon"><i class="fas fa-hand-holding-heart"></i></div>
-          <h4 class="fw-bold">Hygiene Products</h4>
-          <p class="text-secondary-emphasis">Industrial hygiene solutions: sanitizers, washroom supplies, cleaning agents, and COVID-safe standards.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-gradient-card rounded-4 p-4 text-center h-100">
-          <div class="card-icon"><i class="fas fa-cogs"></i></div>
-          <h4 class="fw-bold">Industrial Consumables</h4>
-          <p class="text-secondary-emphasis">Abrasives, adhesives, lubricants, fasteners, general tools and maintenance essentials for mining/industrial use.</p>
-        </div>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <div class="quote-card p-4 rounded-4 d-inline-block w-100">
-          <i class="fas fa-truck-fast gold-gradient me-2 fs-3"></i>
-          <span>Trusted partner to mining houses, municipalities & industrial clients across Limpopo and South Africa — <strong class="gold-gradient">established 2016</strong>.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="footer-grid-inner" style="display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:48px;margin-bottom:40px;">
 
-<!-- Leadership & Profile Overview: MBA, Resilience, Faith -->
-<section id="leadership" class="py-5">
-  <div class="container">
-    <div class="row g-5 align-items-center">
-      <div class="col-lg-5">
-        <div class="bg-gradient-primary p-4 rounded-5 text-center text-white h-100 d-flex flex-column justify-content-center">
-          <i class="fas fa-chalkboard-user fa-4x mb-3 gold-gradient"></i>
-          <h3 class="fw-bold">Mahlatse Lekwadu</h3>
-          <p class="mb-1"><strong>Entrepreneur | Co-Founder | MBA (2021)</strong></p>
-          <p class="mb-2">Postgraduate Diploma in Management & MBA graduate</p>
-          <hr class="bg-white-25">
-          <p class="small">“Discipline, faith, and a commitment to excellence and inclusive economic participation.”</p>
-          <div class="mt-2">
-            <span class="badge bg-warning text-dark me-2">53 years</span>
-            <span class="badge bg-light text-dark">Purpose-driven leader</span>
-          </div>
-        </div>
+      <div>
+        <img src="assets/magatransprentlogo.png" alt="Magadine Logo" style="height:60px;width:auto;margin-bottom:16px;filter:drop-shadow(0 4px 12px rgba(107,142,35,0.3));">
+        <p style="color:var(--footer-text);font-size:0.88rem;line-height:1.7;max-width:240px;transition:var(--transition-theme);">Mining Supply &amp; Services of Choice — serving South Africa's mining belt with purpose and urgency.</p>
       </div>
-      <div class="col-lg-7">
-        <div class="mb-3"><span class="stat-badge"><i class="fas fa-crown me-1"></i> Executive Snapshot</span></div>
-        <h2 class="display-6 fw-bold">Resilient & Purpose-Driven <span class="gold-gradient">Leadership</span></h2>
-        <p class="lead">Mahlatse Lekwadu is a South African entrepreneur and Co-Founder of Magadine Business Enterprise. At 53, she has built a reputation as a resilient and purpose-driven leader in a traditionally male-dominated sector.</p>
-        <p>She holds a <strong>Postgraduate Diploma in Management</strong> and an <strong>MBA</strong>, which she completed in 2021 despite significant personal and health challenges. Following the passing of her husband, who founded the business, she stepped in to lead and grow the company, transforming it into a trusted supplier with established industry relationships. Her leadership is grounded in discipline, faith, and a commitment to excellence and inclusive economic participation.</p>
-        <div class="row mt-4">
-          <div class="col-md-6">
-            <div class="d-flex gap-3 mb-3">
-              <i class="fas fa-graduation-cap fa-2x gold-gradient"></i>
-              <div><strong>MBA Graduate 2021</strong><br>Postgraduate Diploma in Management</div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="d-flex gap-3 mb-3">
-              <i class="fas fa-church fa-2x gold-gradient"></i>
-              <div><strong>Faith & Perseverance</strong><br>Cornerstone of her leadership journey</div>
-            </div>
-          </div>
-        </div>
-        <a href="#contact" class="btn btn-gold mt-2"><i class="fas fa-envelope me-2"></i> Connect with Mahlatse</a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Beliefs and Different Ability Message -->
-<section class="py-4" style="background: #0B2620;">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-9">
-        <div class="bg-gradient-card rounded-5 p-5 text-center shadow-lg">
-          <i class="fas fa-heartbeat fa-3x gold-gradient mb-3"></i>
-          <h3 class="fw-bold">“Not a disability — a different ability.”</h3>
-          <p class="lead fs-5 text-dark-emphasis">Mahlatse’s mindset continues to guide her life and leadership. From personal hardship to business success, she transforms limitations into lasting impact, inspiring countless women and entrepreneurs in South Africa.</p>
-          <div class="mt-4">
-            <span class="border-bottom border-warning border-2 pb-1">Resilience can build lasting impact</span>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(107,142,35,0.7);margin-bottom:16px;">Quick Links</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="products.html" class="footer-link">Products</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(107,142,35,0.7);margin-bottom:16px;">Contact Info</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <a href="mailto:admin@magadine.co.za" class="footer-link" style="display:flex;align-items:center;gap:10px;font-size:0.88rem;">
+            <i class="fas fa-envelope" style="color:rgba(107,142,35,0.6);width:16px;"></i>admin@magadine.co.za
+          </a>
+          <a href="tel:+27682215400" class="footer-link" style="display:flex;align-items:center;gap:10px;font-size:0.88rem;">
+            <i class="fas fa-phone-alt" style="color:rgba(107,142,35,0.6);width:16px;"></i>+27 68 221 5400
+          </a>
+          <div style="display:flex;align-items:flex-start;gap:10px;color:var(--footer-text);font-size:0.85rem;transition:var(--transition-theme);">
+            <i class="fas fa-map-marker-alt" style="color:rgba(107,142,35,0.6);width:16px;margin-top:3px;"></i>
+            Unit B19, Steelpoort Mine Supplier Park, Farm Spitskop 333KT, Steelpoort, 1133
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- Contact & Connect Section -->
-<section id="contact" class="py-5">
-  <div class="container">
-    <div class="row g-5">
-      <div class="col-md-6">
-        <span class="stat-badge"><i class="fas fa-phone-alt me-1"></i> Get in touch</span>
-        <h2 class="display-6 fw-bold mt-2">Partner with <span class="gold-gradient">Magadine</span></h2>
-        <p class="mb-4">Based in Steelpoort, Limpopo — supplying mining houses, municipalities, and industrial clients across South Africa. Let's build a safer, more inclusive supply chain.</p>
-        <ul class="list-unstyled">
-          <li class="mb-3"><i class="fas fa-map-marker-alt gold-gradient me-3 fa-lg"></i> Steelpoort, Limpopo, South Africa</li>
-          <li class="mb-3"><i class="fas fa-envelope gold-gradient me-3 fa-lg"></i> hello@magadine.co.za (demo)</li>
-          <li class="mb-3"><i class="fas fa-phone-alt gold-gradient me-3 fa-lg"></i> +27 (0) 13 590 1234</li>
-        </ul>
-        <div class="d-flex gap-3 mt-4">
-          <a href="#" class="text-white-50 fs-4"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-white-50 fs-4"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-white-50 fs-4"><i class="fab fa-facebook"></i></a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="bg-gradient-card p-4 rounded-4">
-          <h4 class="fw-bold mb-3">Send a message</h4>
-          <form>
-            <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Full Name" style="background:#F5F7FA; border:0;">
-            </div>
-            <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Email address" style="background:#F5F7FA; border:0;">
-            </div>
-            <div class="mb-3">
-              <textarea rows="3" class="form-control" placeholder="Your inquiry about PPE / safety equipment / industrial supplies" style="background:#F5F7FA; border:0;"></textarea>
-            </div>
-            <button type="button" class="btn btn-gold w-100">Request Quote <i class="fas fa-arrow-right ms-2"></i></button>
-            <p class="small text-secondary mt-3 text-center">100% black women-owned mining & industrial supply</p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer style="background: var(--grad-footer);" class="pt-5 pb-4 mt-4 border-top border-secondary">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5 mb-4">
-        <h4 class="gold-gradient">Magadine Business Enterprise</h4>
-        <p>Supplying PPE, safety equipment, hygiene products, and industrial consumables. Trusted partner to mining houses, municipalities, and industrial clients. Founded on resilience, led by purpose.</p>
-        <p class="small">© 2025 Magadine Business Enterprise — 100% Black women-owned</p>
-      </div>
-      <div class="col-md-3 mb-4">
-        <h5 class="fw-semibold">Quick links</h5>
-        <ul class="list-unstyled">
-          <li><a href="#home" class="text-decoration-none">Home</a></li>
-          <li><a href="#story" class="text-decoration-none">Her Story</a></li>
-          <li><a href="#supply" class="text-decoration-none">Supply Catalogue</a></li>
-          <li><a href="#leadership" class="text-decoration-none">Leadership</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4 mb-4">
-        <h5 class="fw-semibold">Steelpoort HQ</h5>
-        <address class="small">
-          <i class="fas fa-location-dot me-1"></i> Industrial Hub, Steelpoort, Limpopo, 1133<br>
-          <i class="fas fa-phone-alt me-1"></i> +27 13 590 1234<br>
-          <i class="fas fa-envelope me-1"></i> info@magadine.co.za<br>
-        </address>
-        <p class="small"><i class="fas fa-certificate gold-gradient me-1"></i> B-BBEE Level 1 Contributor</p>
-      </div>
-    </div>
-    <hr class="bg-secondary opacity-25">
-    <div class="text-center small text-white-50">
-      <i class="fas fa-gem gold-gradient me-1"></i> Resilience Beyond Adversity — Mahlatse Lekwadu, Co-Founder | Different ability mindset
+    <div style="border-top:1px solid var(--border-color);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;transition:var(--transition-theme);">
+      <p style="color:var(--footer-text);font-size:0.78rem;transition:var(--transition-theme);">© <span id="currentYear"></span> Magadine Business Enterprise (Pty) Ltd. All Rights Reserved.</p>
+      <p style="color:var(--text-faint);font-size:0.72rem;font-family:'Space Mono',monospace;transition:var(--transition-theme);">Mining Supply &amp; Services of Choice</p>
     </div>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<button id="btt" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+<!-- =====================================================
+     THREE.JS — Subtle hex particle field
+====================================================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function() {
+  const canvas = document.getElementById('three-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 30;
+
+  const colors = [0x6b8e23, 0x8aad35, 0x8B4513, 0xc4692a, 0x1e3a5f];
+
+  function makeHex(size) {
+    const shape = new THREE.Shape();
+    for (let i = 0; i < 6; i++) {
+      const angle = (Math.PI / 3) * i - Math.PI / 6;
+      const x = size * Math.cos(angle), y = size * Math.sin(angle);
+      i === 0 ? shape.moveTo(x, y) : shape.lineTo(x, y);
+    }
+    shape.closePath();
+    return new THREE.ShapeGeometry(shape);
+  }
+
+  const particles = [];
+  const COUNT = window.innerWidth < 768 ? 18 : 38;
+
+  for (let i = 0; i < COUNT; i++) {
+    const size = Math.random() * 0.6 + 0.15;
+    const geo = makeHex(size);
+    const col = colors[Math.floor(Math.random() * colors.length)];
+    const mat = new THREE.MeshBasicMaterial({
+      color: col, opacity: Math.random() * 0.12 + 0.04,
+      transparent: true, side: THREE.DoubleSide,
+      wireframe: Math.random() > 0.55,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    const spread = 50;
+    mesh.position.set(
+      (Math.random() - 0.5) * spread,
+      (Math.random() - 0.5) * spread * 0.8,
+      (Math.random() - 0.5) * 20
+    );
+    mesh.rotation.z = Math.random() * Math.PI * 2;
+    mesh.userData = {
+      speedY: (Math.random() - 0.5) * 0.008,
+      speedX: (Math.random() - 0.5) * 0.004,
+      rotSpeed: (Math.random() - 0.5) * 0.008,
+      phase: Math.random() * Math.PI * 2,
+    };
+    scene.add(mesh);
+    particles.push(mesh);
+  }
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', e => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  let raf;
+  function animate(t) {
+    raf = requestAnimationFrame(animate);
+    const time = t * 0.001;
+    particles.forEach(p => {
+      const d = p.userData;
+      p.position.y += d.speedY;
+      p.position.x += d.speedX;
+      p.rotation.z += d.rotSpeed;
+      p.position.y += Math.sin(time + d.phase) * 0.003;
+      if (p.position.y > 30) p.position.y = -30;
+      if (p.position.y < -30) p.position.y = 30;
+      if (p.position.x > 30) p.position.x = -30;
+      if (p.position.x < -30) p.position.x = 30;
+    });
+    camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.02;
+    camera.position.y += (-mouseY * 0.8 - camera.position.y) * 0.02;
+    camera.lookAt(scene.position);
+    renderer.render(scene, camera);
+  }
+  animate(0);
+
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(raf);
+    else animate(0);
+  });
+})();
+</script>
+
+<!-- =====================================================
+     MAIN JAVASCRIPT
+====================================================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+  // ======== THEME TOGGLE ========
+  const html = document.documentElement;
+  let isDark = true;
+
+  function applyTheme(dark) {
+    isDark = dark;
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('maga-theme', dark ? 'dark' : 'light');
+
+    const moonIcon = document.getElementById('toggleIconMoon');
+    const sunIcon = document.getElementById('toggleIconSun');
+    const mobileIcon = document.getElementById('mobileToggleIcon');
+
+    if (dark) {
+      moonIcon.style.transform = 'scale(1.15)';
+      moonIcon.style.boxShadow = '0 0 24px rgba(100,140,220,0.7)';
+      moonIcon.style.opacity = '1';
+      sunIcon.style.transform = 'scale(0.88)';
+      sunIcon.style.opacity = '0.6';
+      mobileIcon.className = 'fas fa-moon';
+    } else {
+      sunIcon.style.transform = 'scale(1.15)';
+      sunIcon.style.boxShadow = '0 0 24px rgba(245,200,66,0.8)';
+      sunIcon.style.opacity = '1';
+      moonIcon.style.transform = 'scale(0.88)';
+      moonIcon.style.opacity = '0.6';
+      mobileIcon.className = 'fas fa-sun';
+    }
+  }
+
+  const saved = localStorage.getItem('maga-theme');
+  applyTheme(saved !== 'light');
+
+  document.getElementById('themeTrackBtn').addEventListener('click', () => applyTheme(!isDark));
+  document.getElementById('themeMobileBtn').addEventListener('click', () => applyTheme(!isDark));
+
+  // ======== NAVBAR ========
+  const navbar = document.getElementById('navbar');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  document.getElementById('btt').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ======== TAPES ========
+  const tapeData = [
+    { text: '⚠ CAUTION ⚠', type: 't-b' },
+    { text: 'MINING SUPPLIES', type: 't-y' },
+    { text: '⚠ PPE EQUIPMENT ⚠', type: 't-b' },
+    { text: 'FIRE RISK SUPPLY', type: 't-y' },
+    { text: '⚠ SAFETY FIRST ⚠', type: 't-b' },
+    { text: 'STEELPOORT · LIMPOPO', type: 't-y' },
+    { text: '⚠ AUTHORISED ONLY ⚠', type: 't-b' },
+    { text: 'MAGADINE ENTERPRISE', type: 't-y' },
+  ];
+  function buildTape(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    for (let i = 0; i < 2; i++) {
+      tapeData.forEach(d => {
+        const seg = document.createElement('div');
+        seg.className = `t-seg ${d.type}`;
+        seg.textContent = d.text;
+        el.appendChild(seg);
+      });
+    }
+  }
+  buildTape('tape1');
+  buildTape('tape2');
+
+  // ======== MARQUEE ========
+  const mqItems = [
+    { icon: 'fa-hard-hat', text: 'PPE Equipment' },
+    { icon: 'fa-fire-extinguisher', text: 'Fire Risk Supply' },
+    { icon: 'fa-shield-alt', text: 'Safety Harnesses' },
+    { icon: 'fa-broom', text: 'Cleaning Kits' },
+    { icon: 'fa-tape', text: 'Construction Tape' },
+    { icon: 'fa-mitten', text: 'Dromex Gloves' },
+    { icon: 'fa-industry', text: 'Mining Supplies' },
+    { icon: 'fa-file-alt', text: 'Office Stationery' },
+    { icon: 'fa-box', text: '1-Ton Textile Bags' },
+    { icon: 'fa-pump-soap', text: 'Hand Cleaners' },
+  ];
+  const track = document.getElementById('mqTrack');
+  if (track) {
+    for (let i = 0; i < 2; i++) {
+      mqItems.forEach(item => {
+        const d = document.createElement('div');
+        d.className = 'mq-item';
+        d.innerHTML = `<i class="fas ${item.icon}"></i><span>${item.text}</span><span class="mq-dot"></span>`;
+        track.appendChild(d);
+      });
+    }
+  }
+
+  // ======== SCROLL REVEAL ========
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('rved'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rv, .rv-l, .rv-r').forEach(el => obs.observe(el));
+
+  // ======== CURSOR GLOW ========
+  if (window.innerWidth > 768) {
+    const glow = document.createElement('div');
+    glow.style.cssText = 'position:fixed;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(107,142,35,0.035) 0%,transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:left 0.6s ease,top 0.6s ease;';
+    document.body.appendChild(glow);
+    document.addEventListener('mousemove', e => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
+  }
+});
+</script>
+
 </body>
 </html>
