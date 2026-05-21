@@ -1,0 +1,1460 @@
+cat > /mnt/user-data/outputs/marumo-additions.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marumo Mkhonto — New Additions Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --olive:#6b8e23;--olive-light:#8aad35;--olive-dark:#4a6218;
+  --earth:#8B4513;--earth-warm:#c4692a;--gold:#d4a843;--gold-light:#f0c060;
+  --navy:#1e3a5f;--cream:#f5f0e8;--ink:#0a0a06;
+  --t: all 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow',sans-serif;background:#050805;color:#fff;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:#050805;}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--earth));border-radius:2px;}
+
+/* =============================================
+   SECTION BASE
+============================================= */
+section{position:relative;padding:120px 0;overflow:hidden;}
+.container{max-width:1280px;margin:0 auto;padding:0 48px;}
+.section-kicker{
+  font-family:'Space Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold-light);margin-bottom:1rem;
+  display:flex;align-items:center;gap:14px;
+}
+.section-kicker::before{content:'';width:28px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);}
+.section-kicker.center{justify-content:center;}
+.section-kicker.center::before,.section-kicker.center::after{display:none;}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:900;line-height:0.95;
+  letter-spacing:-0.01em;margin-bottom:1.5rem;color:#fff;
+}
+.section-title em{font-style:italic;color:var(--gold-light);}
+
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.9s cubic-bezier(0.16,1,0.3,1);}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-40px);transition:all 0.9s cubic-bezier(0.16,1,0.3,1);}
+.reveal-l.vis{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(40px);transition:all 0.9s cubic-bezier(0.16,1,0.3,1);}
+.reveal-r.vis{opacity:1;transform:translateX(0);}
+.d1{transition-delay:0.1s!important;}.d2{transition-delay:0.2s!important;}
+.d3{transition-delay:0.3s!important;}.d4{transition-delay:0.4s!important;}
+
+/* =============================================
+   1. PARALLAX HERO BACKGROUND SCENE
+      — Layered SVG mountains + particles
+============================================= */
+.parallax-bg-scene{
+  position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.pbg-layer{
+  position:absolute;bottom:0;left:0;right:0;will-change:transform;
+}
+.pbg-stars{
+  position:absolute;inset:0;
+  background:radial-gradient(1px 1px at 20% 30%,rgba(255,255,255,0.6),transparent),
+    radial-gradient(1px 1px at 80% 10%,rgba(255,255,255,0.5),transparent),
+    radial-gradient(1.5px 1.5px at 45% 20%,rgba(240,192,96,0.7),transparent),
+    radial-gradient(1px 1px at 65% 40%,rgba(255,255,255,0.4),transparent),
+    radial-gradient(1px 1px at 10% 60%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(2px 2px at 90% 50%,rgba(240,192,96,0.5),transparent),
+    radial-gradient(1px 1px at 35% 70%,rgba(255,255,255,0.4),transparent),
+    radial-gradient(1px 1px at 55% 85%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(1px 1px at 15% 15%,rgba(255,255,255,0.5),transparent),
+    radial-gradient(1px 1px at 75% 75%,rgba(240,192,96,0.4),transparent),
+    radial-gradient(1px 1px at 25% 50%,rgba(255,255,255,0.35),transparent),
+    radial-gradient(1px 1px at 88% 25%,rgba(255,255,255,0.45),transparent),
+    radial-gradient(1.5px 1.5px at 5% 80%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(1px 1px at 60% 15%,rgba(240,192,96,0.6),transparent),
+    radial-gradient(1px 1px at 40% 90%,rgba(255,255,255,0.25),transparent);
+  animation:starTwinkle 8s ease-in-out infinite alternate;
+}
+@keyframes starTwinkle{0%{opacity:0.6;}100%{opacity:1;}}
+
+/* SVG mountain layers */
+.pbg-mountains-far{bottom:0;opacity:0.25;}
+.pbg-mountains-mid{bottom:0;opacity:0.45;}
+.pbg-mountains-near{bottom:0;opacity:0.7;}
+
+/* Ambient orbs */
+.pbg-orb{
+  position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;
+  animation:orbFloat 12s ease-in-out infinite alternate;
+}
+.pbg-orb-1{
+  width:400px;height:300px;
+  background:radial-gradient(circle,rgba(107,142,35,0.18),transparent 70%);
+  top:10%;right:5%;
+  animation-duration:15s;
+}
+.pbg-orb-2{
+  width:300px;height:250px;
+  background:radial-gradient(circle,rgba(196,105,42,0.15),transparent 70%);
+  top:30%;left:10%;
+  animation-duration:11s;animation-delay:-4s;
+}
+.pbg-orb-3{
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(212,168,67,0.12),transparent 70%);
+  bottom:20%;right:20%;
+  animation-duration:9s;animation-delay:-7s;
+}
+@keyframes orbFloat{
+  0%{transform:translate(0,0) scale(1);}
+  100%{transform:translate(30px,-20px) scale(1.1);}
+}
+
+/* =============================================
+   2. VALUES / MANIFESTO SECTION
+      — Magnetic card tilt effect
+============================================= */
+#manifesto{background:#070c07;}
+.manifesto-header{text-align:center;margin-bottom:5rem;}
+.manifesto-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  position:relative;z-index:1;
+}
+.manifesto-card{
+  position:relative;border-radius:16px;overflow:hidden;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  padding:40px 32px;
+  cursor:default;
+  transition:border-color 0.4s ease;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+/* Magnetic tilt handled by JS — glow follows mouse */
+.manifesto-card::before{
+  content:'';
+  position:absolute;inset:0;border-radius:16px;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),
+    rgba(212,168,67,0.12),transparent 60%);
+  opacity:0;transition:opacity 0.5s;
+}
+.manifesto-card:hover::before{opacity:1;}
+.manifesto-card:hover{border-color:rgba(212,168,67,0.25);}
+
+.mc-number{
+  font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(212,168,67,0.18);
+  position:absolute;top:20px;right:24px;pointer-events:none;
+  transition:all 0.5s ease;
+}
+.manifesto-card:hover .mc-number{
+  -webkit-text-stroke-color:rgba(212,168,67,0.45);
+  transform:scale(1.05);
+}
+.mc-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(107,142,35,0.25),rgba(196,105,42,0.15));
+  border:1px solid rgba(107,142,35,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;color:var(--olive-light);
+  margin-bottom:24px;
+  transition:all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.manifesto-card:hover .mc-icon{
+  transform:translateY(-6px) rotate(5deg);
+  background:linear-gradient(135deg,rgba(107,142,35,0.4),rgba(196,105,42,0.25));
+  box-shadow:0 12px 32px rgba(107,142,35,0.3);
+}
+.mc-title{
+  font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;
+  color:#fff;margin-bottom:12px;line-height:1.2;
+}
+.mc-text{font-size:0.9rem;line-height:1.8;color:rgba(255,255,255,0.45);}
+.mc-accent{
+  display:inline-block;margin-top:20px;
+  font-family:'Space Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold-light);
+  padding-bottom:2px;
+  border-bottom:1px solid rgba(240,192,96,0.3);
+  transition:all 0.3s;
+}
+.manifesto-card:hover .mc-accent{
+  letter-spacing:0.28em;border-bottom-color:var(--gold-light);
+}
+
+/* Background dust particles for manifesto */
+.manifesto-dust{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.manifesto-dust span{
+  position:absolute;border-radius:50%;
+  background:rgba(212,168,67,0.4);
+  animation:dustFloat linear infinite;
+  opacity:0;
+}
+@keyframes dustFloat{
+  0%{transform:translateY(100%) rotate(0deg);opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:0.5;}
+  100%{transform:translateY(-120vh) rotate(720deg);opacity:0;}
+}
+
+/* =============================================
+   3. QUOTE MARQUEE — Horizontal Scroll Words
+============================================= */
+.quote-marquee-wrap{
+  background:#050b05;padding:80px 0;overflow:hidden;
+  border-top:1px solid rgba(212,168,67,0.06);
+  border-bottom:1px solid rgba(212,168,67,0.06);
+  position:relative;
+}
+.qm-track{
+  display:flex;white-space:nowrap;
+  animation:qmScroll 25s linear infinite;
+  width:max-content;
+}
+.qm-track:hover{animation-play-state:paused;}
+@keyframes qmScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%)}}
+.qm-word{
+  display:inline-flex;align-items:center;gap:24px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,3.5rem);
+  font-style:italic;font-weight:400;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,0.15);
+  padding:0 24px;
+  transition:all 0.4s;cursor:default;
+}
+.qm-word.accent{
+  color:var(--gold-light);
+  -webkit-text-stroke:none;
+  font-weight:700;font-style:normal;
+}
+.qm-sep{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--gold);opacity:0.4;flex-shrink:0;
+}
+.qm-fade-l{position:absolute;left:0;top:0;bottom:0;width:200px;z-index:2;background:linear-gradient(90deg,#050b05,transparent);}
+.qm-fade-r{position:absolute;right:0;top:0;bottom:0;width:200px;z-index:2;background:linear-gradient(-90deg,#050b05,transparent);}
+
+/* =============================================
+   4. IMPACT NUMBERS — Animated Counters
+============================================= */
+#impact{background:linear-gradient(135deg,#060b06 0%,#0a0f08 50%,#060b06 100%);}
+.impact-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+  border:1px solid rgba(212,168,67,0.08);border-radius:16px;overflow:hidden;
+}
+.impact-item{
+  padding:56px 36px;text-align:center;
+  background:rgba(255,255,255,0.02);
+  position:relative;overflow:hidden;
+  transition:background 0.5s,transform 0.5s;
+}
+.impact-item::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(212,168,67,0.08),transparent 70%);
+  opacity:0;transition:opacity 0.5s;
+}
+.impact-item:hover{background:rgba(212,168,67,0.05);}
+.impact-item:hover::before{opacity:1;}
+.impact-divider{
+  position:absolute;right:0;top:20%;bottom:20%;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(212,168,67,0.15),transparent);
+}
+.ii-value{
+  font-family:'Bebas Neue',sans-serif;font-size:4.5rem;line-height:1;
+  background:linear-gradient(135deg,var(--gold-light),var(--earth-warm));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;margin-bottom:8px;
+  transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.impact-item:hover .ii-value{transform:scale(1.12);}
+.ii-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;
+  font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);margin-bottom:8px;
+}
+.ii-desc{
+  font-size:0.8rem;color:rgba(255,255,255,0.22);line-height:1.5;
+}
+
+/* =============================================
+   5. PHILOSOPHY PARALLAX BANNER
+      — Full-bleed image with text overlay
+============================================= */
+#philosophy-banner{
+  padding:0;min-height:70vh;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.pb-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(135deg,rgba(5,8,5,0.88) 0%,rgba(5,8,5,0.6) 50%,rgba(5,8,5,0.88) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23050805'/%3E%3Cpath d='M0 50 L50 0 L100 50 L50 100 Z' fill='rgba(107,142,35,0.04)'/%3E%3Cpath d='M25 25 L75 25 L75 75 L25 75 Z' fill='none' stroke='rgba(212,168,67,0.03)' stroke-width='0.5'/%3E%3C/svg%3E") repeat;
+  will-change:transform;
+}
+/* Mining-textured geometric overlay */
+.pb-geo{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(212,168,67,0.015) 40px,rgba(212,168,67,0.015) 41px),
+    repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(107,142,35,0.015) 40px,rgba(107,142,35,0.015) 41px);
+}
+.pb-content{
+  position:relative;z-index:2;text-align:center;max-width:900px;padding:80px 48px;
+}
+.pb-chapter{
+  font-family:'Space Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.4em;text-transform:uppercase;
+  color:rgba(212,168,67,0.6);margin-bottom:2rem;
+  animation:fadeUp 1s forwards;
+}
+.pb-quote{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,5vw,4rem);font-weight:400;font-style:italic;
+  line-height:1.3;color:#fff;margin-bottom:2.5rem;
+  text-shadow:0 2px 40px rgba(0,0,0,0.5);
+}
+.pb-quote strong{
+  color:var(--gold-light);font-style:normal;font-weight:900;
+}
+.pb-attribution{
+  font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;
+  font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);
+}
+/* Corner ornaments */
+.pb-corner{position:absolute;width:40px;height:40px;}
+.pb-corner.tl{top:40px;left:40px;border-top:1px solid rgba(212,168,67,0.3);border-left:1px solid rgba(212,168,67,0.3);}
+.pb-corner.tr{top:40px;right:40px;border-top:1px solid rgba(212,168,67,0.3);border-right:1px solid rgba(212,168,67,0.3);}
+.pb-corner.bl{bottom:40px;left:40px;border-bottom:1px solid rgba(212,168,67,0.3);border-left:1px solid rgba(212,168,67,0.3);}
+.pb-corner.br{bottom:40px;right:40px;border-bottom:1px solid rgba(212,168,67,0.3);border-right:1px solid rgba(212,168,67,0.3);}
+
+/* =============================================
+   6. AWARDS & RECOGNITION — Hover Shimmer Cards
+============================================= */
+#awards{background:#060b06;}
+.awards-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+}
+.award-card{
+  position:relative;border-radius:16px;overflow:hidden;
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.07);
+  padding:36px 32px;
+  display:flex;gap:24px;align-items:flex-start;
+  transition:all 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+/* Shimmer sweep on hover */
+.award-card::before{
+  content:'';
+  position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(212,168,67,0.08),transparent);
+  transition:left 0.7s ease;
+}
+.award-card:hover::before{left:100%;}
+.award-card:hover{
+  border-color:rgba(212,168,67,0.3);
+  background:rgba(212,168,67,0.04);
+  transform:translateY(-6px);
+  box-shadow:0 24px 48px rgba(0,0,0,0.3),0 0 0 1px rgba(212,168,67,0.15);
+}
+.award-icon{
+  width:64px;height:64px;flex-shrink:0;border-radius:16px;
+  background:linear-gradient(135deg,rgba(212,168,67,0.2),rgba(139,69,19,0.15));
+  border:1px solid rgba(212,168,67,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;
+  transition:all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.award-card:hover .award-icon{
+  transform:scale(1.15) rotate(-5deg);
+  box-shadow:0 12px 30px rgba(212,168,67,0.25);
+}
+.award-body{}
+.award-year{
+  font-family:'Space Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.18em;color:var(--gold-light);margin-bottom:6px;
+}
+.award-title{
+  font-family:'Playfair Display',serif;font-size:1.15rem;
+  font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3;
+}
+.award-body-text{font-size:0.85rem;color:rgba(255,255,255,0.4);line-height:1.6;}
+.award-badge{
+  display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  background:rgba(107,142,35,0.15);border:1px solid rgba(107,142,35,0.3);
+  padding:4px 14px;border-radius:50px;
+  font-family:'Space Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--olive-light);
+}
+
+/* =============================================
+   7. SKILLS / EXPERTISE BARS — Liquid Fill
+============================================= */
+#expertise{background:#080d08;}
+.expertise-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.skill-list{display:flex;flex-direction:column;gap:24px;}
+.skill-item{}
+.skill-header{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:8px;
+}
+.skill-name{
+  font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+}
+.skill-pct{
+  font-family:'Space Mono',monospace;font-size:0.7rem;
+  color:var(--gold-light);
+}
+.skill-bar{
+  height:3px;border-radius:2px;
+  background:rgba(255,255,255,0.06);
+  position:relative;overflow:visible;
+}
+.skill-fill{
+  position:absolute;left:0;top:0;bottom:0;
+  border-radius:2px;width:0%;
+  transition:width 1.5s cubic-bezier(0.4,0,0.2,1);
+}
+.skill-fill.gold{background:linear-gradient(90deg,var(--gold),var(--earth-warm));}
+.skill-fill.green{background:linear-gradient(90deg,var(--olive),var(--olive-light));}
+/* Trailing glow dot */
+.skill-fill::after{
+  content:'';position:absolute;right:-4px;top:50%;
+  width:8px;height:8px;border-radius:50%;
+  transform:translateY(-50%);
+  box-shadow:0 0 10px 3px currentColor;
+  transition:right 1.5s cubic-bezier(0.4,0,0.2,1);
+}
+.skill-fill.gold::after{background:var(--gold-light);color:var(--gold-light);}
+.skill-fill.green::after{background:var(--olive-light);color:var(--olive-light);}
+
+.expertise-prose{}
+.expertise-tagline{
+  font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);
+  font-weight:900;line-height:1.1;color:#fff;margin-bottom:1.5rem;
+}
+.expertise-tagline em{font-style:italic;color:var(--gold-light);}
+.expertise-text{
+  font-size:0.95rem;line-height:1.85;color:rgba(255,255,255,0.48);
+  margin-bottom:1rem;
+}
+.expertise-cta{
+  display:inline-flex;align-items:center;gap:10px;margin-top:1.5rem;
+  font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;
+  font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold-light);text-decoration:none;
+  padding-bottom:4px;border-bottom:1px solid rgba(240,192,96,0.3);
+  transition:all 0.4s;
+}
+.expertise-cta:hover{
+  gap:18px;border-bottom-color:var(--gold-light);
+  color:var(--gold-light);
+}
+
+/* =============================================
+   8. TESTIMONIALS — 3D FLIP CARDS
+============================================= */
+#testimonials{background:linear-gradient(180deg,#060b06 0%,#080d08 100%);}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testi-card{
+  perspective:1000px;height:280px;cursor:pointer;
+}
+.testi-inner{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.testi-card:hover .testi-inner{transform:rotateY(180deg);}
+.testi-front,.testi-back{
+  position:absolute;inset:0;backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:16px;padding:32px;
+}
+.testi-front{
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.07);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.testi-quote-mark{
+  font-family:'Playfair Display',serif;
+  font-size:5rem;line-height:0.8;color:rgba(212,168,67,0.2);
+  font-style:italic;margin-bottom:12px;
+}
+.testi-text{
+  font-family:'Playfair Display',serif;font-size:0.95rem;
+  font-style:italic;line-height:1.7;
+  color:rgba(255,255,255,0.6);flex:1;
+}
+.testi-person{display:flex;align-items:center;gap:12px;margin-top:20px;}
+.testi-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--olive),var(--earth));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;
+  color:#fff;flex-shrink:0;
+}
+.testi-name{
+  font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;
+  font-weight:700;letter-spacing:0.04em;color:#fff;
+}
+.testi-role{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.testi-back{
+  background:linear-gradient(135deg,var(--olive-dark) 0%,#2a1a08 100%);
+  border:1px solid rgba(107,142,35,0.3);
+  transform:rotateY(180deg);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;gap:16px;
+}
+.testi-back-icon{font-size:2.5rem;opacity:0.7;}
+.testi-back-title{
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;
+  letter-spacing:0.1em;color:var(--gold-light);
+}
+.testi-back-text{
+  font-size:0.82rem;line-height:1.7;color:rgba(255,255,255,0.6);
+}
+.testi-stars{color:var(--gold-light);font-size:0.8rem;letter-spacing:2px;}
+
+/* =============================================
+   9. PAGE-FLIP ARTICLE MODAL
+============================================= */
+.article-modal-overlay{
+  position:fixed;inset:0;z-index:100000;
+  background:rgba(5,8,5,0);
+  backdrop-filter:blur(0px);
+  pointer-events:none;
+  transition:background 0.5s ease, backdrop-filter 0.5s ease;
+  display:flex;align-items:center;justify-content:center;
+}
+.article-modal-overlay.open{
+  background:rgba(5,8,5,0.92);
+  backdrop-filter:blur(20px);
+  pointer-events:all;
+}
+
+.article-modal-book{
+  position:relative;
+  width:min(900px,92vw);
+  max-height:88vh;
+  perspective:2000px;
+  transform-style:preserve-3d;
+}
+
+/* The pages */
+.book-page{
+  position:absolute;inset:0;
+  border-radius:4px;
+  transform-origin:left center;
+  backface-visibility:hidden;
+  overflow:hidden;
+}
+.page-back-cover{
+  background:linear-gradient(135deg,#1a1005 0%,#0a0801 100%);
+  border:1px solid rgba(212,168,67,0.1);
+  border-radius:4px;
+  position:relative;
+  min-height:580px;
+  display:flex;align-items:center;justify-content:center;
+}
+.page-back-cover::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:8px;
+  background:linear-gradient(180deg,var(--gold),var(--earth),var(--olive));
+  border-radius:4px 0 0 4px;
+}
+
+/* Front page (closed state) */
+.page-front{
+  background:linear-gradient(160deg,#f5f0e8 0%,#ede5d8 100%);
+  z-index:2;
+  border:1px solid rgba(0,0,0,0.1);
+  min-height:580px;
+  display:flex;flex-direction:column;
+  transform:rotateY(0deg);
+  transition:transform 1s cubic-bezier(0.645,0.045,0.355,1);
+  transform-style:preserve-3d;
+}
+.page-front.flipped{
+  transform:rotateY(-180deg);
+}
+/* Shading on flip for 3D illusion */
+.page-front::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,0.12) 0%,transparent 30%);
+  pointer-events:none;border-radius:4px;
+  opacity:0;transition:opacity 0.5s;
+}
+.page-front.flipping::after{opacity:1;}
+
+/* Half-page curl effect */
+.page-mid{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#ede0c8 0%,#e0d4bc 100%);
+  z-index:1;
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:4px;
+  min-height:580px;
+  transform:rotateY(0deg);
+  transition:transform 1s 0.15s cubic-bezier(0.645,0.045,0.355,1);
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.page-mid.flipped{transform:rotateY(-180deg);}
+
+/* Inside spread (what you read) */
+.page-spread{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:580px;
+  background:transparent;
+  z-index:0;
+}
+.spread-left{
+  background:linear-gradient(160deg,#f5f0e8 0%,#ede5d8 100%);
+  border:1px solid rgba(0,0,0,0.06);
+  border-radius:4px 0 0 4px;
+  padding:48px 40px;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+/* Ruled lines */
+.spread-left::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(0,0,0,0.05) 27px,rgba(0,0,0,0.05) 28px);
+  pointer-events:none;
+}
+/* Red margin */
+.spread-left::before{
+  content:'';position:absolute;left:56px;top:0;bottom:0;width:1px;
+  background:rgba(180,50,50,0.2);
+}
+.spread-right{
+  background:linear-gradient(160deg,#faf5ed 0%,#f2eadb 100%);
+  border:1px solid rgba(0,0,0,0.06);
+  border-radius:0 4px 4px 0;
+  border-left:none;
+  padding:48px 40px;
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+  position:relative;
+}
+.spread-right::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(0,0,0,0.04) 27px,rgba(0,0,0,0.04) 28px);
+  pointer-events:none;
+}
+
+/* Book spine */
+.book-spine{
+  position:absolute;left:50%;top:0;bottom:0;width:8px;
+  transform:translateX(-50%);z-index:10;
+  background:linear-gradient(180deg,var(--gold),var(--earth),var(--olive));
+  box-shadow:0 0 20px rgba(212,168,67,0.3);
+}
+
+/* Article content inside spread */
+.art-pub-badge{
+  font-family:'Space Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.15em;color:var(--earth);
+  text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+  position:relative;z-index:1;
+}
+.art-pub-badge::before{content:'';width:20px;height:1px;background:var(--earth);}
+.art-headline{
+  font-family:'Playfair Display',serif;font-size:1.6rem;
+  font-weight:900;line-height:1.2;color:#1a1005;
+  margin-bottom:20px;position:relative;z-index:1;
+}
+.art-byline{
+  font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;
+  font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(26,16,5,0.45);margin-bottom:24px;
+  position:relative;z-index:1;
+}
+.art-divider{
+  width:60px;height:2px;background:linear-gradient(90deg,var(--earth),transparent);
+  margin-bottom:24px;position:relative;z-index:1;
+}
+.art-body{
+  font-family:'Barlow',sans-serif;font-size:0.88rem;
+  line-height:1.85;color:rgba(26,16,5,0.65);
+  flex:1;position:relative;z-index:1;
+}
+.art-body p{margin-bottom:1rem;}
+.art-pullquote{
+  margin:24px 0;padding:20px 24px;
+  border-left:3px solid var(--gold);
+  background:rgba(212,168,67,0.08);
+  border-radius:0 8px 8px 0;
+  font-family:'Playfair Display',serif;font-size:1rem;
+  font-style:italic;color:#1a1005;line-height:1.6;
+  position:relative;z-index:1;
+}
+.art-cta-wrap{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+.art-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--olive),var(--earth));
+  color:#fff;font-family:'Barlow Condensed',sans-serif;
+  font-size:0.82rem;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;text-decoration:none;
+  padding:12px 24px;border-radius:50px;
+  transition:all 0.3s;border:none;cursor:pointer;
+}
+.art-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,142,35,0.4);}
+.art-close-btn{
+  position:absolute;top:20px;right:20px;z-index:200;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  color:#fff;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all 0.3s;
+  backdrop-filter:blur(10px);
+}
+.art-close-btn:hover{background:rgba(255,255,255,0.25);transform:scale(1.1) rotate(90deg);}
+
+/* Front cover content */
+.fc-header{padding:40px;flex:1;display:flex;flex-direction:column;position:relative;}
+.fc-pub{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;
+  letter-spacing:0.3em;text-transform:uppercase;color:rgba(26,16,5,0.4);
+  margin-bottom:32px;display:flex;align-items:center;gap:8px;
+}
+.fc-pub::before{content:'';flex:1;height:1px;background:rgba(26,16,5,0.15);}
+.fc-pub::after{content:'';flex:1;height:1px;background:rgba(26,16,5,0.15);}
+.fc-cover-img{
+  width:100%;flex:1;background-size:cover;background-position:center;
+  border-radius:4px;margin-bottom:24px;min-height:200px;
+  position:relative;
+}
+.fc-cover-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(245,240,232,0.8) 100%);
+  border-radius:4px;
+}
+.fc-title{
+  font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;
+  line-height:1.2;color:#1a1005;margin-bottom:8px;
+}
+.fc-meta{
+  font-family:'Space Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.12em;color:rgba(26,16,5,0.35);
+  margin-bottom:20px;
+}
+.fc-hint{
+  display:flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--earth);
+  animation:hintPulse 2s ease-in-out infinite;
+}
+@keyframes hintPulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
+.fc-spine{
+  position:absolute;left:0;top:0;bottom:0;width:8px;
+  background:linear-gradient(180deg,var(--gold),var(--earth),var(--olive));
+  border-radius:4px 0 0 4px;
+}
+
+/* Page number */
+.page-num{
+  font-family:'Space Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.1em;color:rgba(26,16,5,0.25);
+  text-align:center;margin-top:auto;padding-top:16px;
+  position:relative;z-index:1;
+}
+
+/* Animate IN the modal */
+.article-modal-book{
+  transform:scale(0.85) rotateX(8deg);
+  opacity:0;
+  transition:all 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.article-modal-overlay.open .article-modal-book{
+  transform:scale(1) rotateX(0deg);
+  opacity:1;
+}
+
+/* reading progress */
+.read-progress{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--olive),var(--gold));
+  transform-origin:left;transform:scaleX(0);
+  transition:transform 0.3s ease;z-index:100;
+}
+
+/* =============================================
+   10. BOOK CARD UPDATE — add "Read Article" btn
+============================================= */
+.bb-link-new{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--olive),var(--earth));
+  color:#fff;font-family:'Barlow Condensed',sans-serif;
+  font-size:0.8rem;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:10px 20px;border-radius:50px;
+  margin-top:16px;position:relative;z-index:10;
+  transition:all 0.3s ease;width:fit-content;
+  cursor:pointer;border:none;
+  animation:btnGlow 2.5s ease-in-out infinite alternate;
+}
+@keyframes btnGlow{
+  0%{box-shadow:0 4px 16px rgba(107,142,35,0.2);}
+  100%{box-shadow:0 8px 32px rgba(107,142,35,0.5);}
+}
+.bb-link-new:hover{transform:translateY(-2px);}
+
+/* =============================================
+   UTILITY
+============================================= */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- ======================================================================
+     DEMO WRAPPER — shows only the new additions to integrate
+====================================================================== -->
+
+<!-- =============================================
+     1. BACKGROUND SCENE DEMO (hero augmentation)
+============================================= -->
+<section style="min-height:50vh;position:relative;background:#050805;display:flex;align-items:center;justify-content:center;">
+  <div class="parallax-bg-scene" id="parallaxScene">
+    <div class="pbg-stars"></div>
+    <!-- Far mountains -->
+    <div class="pbg-layer pbg-mountains-far" id="layerFar">
+      <svg viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;display:block;">
+        <path d="M0 400 L0 280 L80 200 L160 240 L260 150 L360 220 L440 140 L540 200 L620 110 L720 190 L820 80 L920 170 L1020 120 L1120 200 L1220 140 L1320 220 L1440 160 L1440 400 Z" fill="#6b8e23" opacity="0.4"/>
+      </svg>
+    </div>
+    <!-- Mid mountains -->
+    <div class="pbg-layer pbg-mountains-mid" id="layerMid">
+      <svg viewBox="0 0 1440 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;display:block;">
+        <path d="M0 360 L0 300 L120 220 L200 260 L300 180 L400 240 L500 160 L600 220 L700 130 L800 200 L900 150 L1000 230 L1100 170 L1200 250 L1300 190 L1440 260 L1440 360 Z" fill="#4a6218" opacity="0.5"/>
+      </svg>
+    </div>
+    <!-- Near mountains -->
+    <div class="pbg-layer pbg-mountains-near" id="layerNear">
+      <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;display:block;">
+        <path d="M0 320 L0 280 L180 200 L280 250 L380 190 L480 260 L580 180 L680 240 L780 170 L880 230 L980 200 L1080 270 L1180 200 L1280 260 L1440 300 L1440 320 Z" fill="#1a0f05" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="pbg-orb pbg-orb-1"></div>
+    <div class="pbg-orb pbg-orb-2"></div>
+    <div class="pbg-orb pbg-orb-3"></div>
+  </div>
+  <div style="position:relative;z-index:10;text-align:center;padding:40px;">
+    <div style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.3em;color:var(--gold-light);margin-bottom:16px;">NEW ADDITION 1</div>
+    <div style="font-family:'Playfair Display',serif;font-size:2rem;color:#fff;">Parallax Mountain Background Scene</div>
+    <div style="color:rgba(255,255,255,0.4);font-size:0.9rem;margin-top:8px;">Scroll-reactive layered mining landscape</div>
+  </div>
+</section>
+
+<!-- =============================================
+     2. MANIFESTO / VALUES
+============================================= -->
+<section id="manifesto">
+  <div class="manifesto-dust" id="dustContainer"></div>
+  <div class="container">
+    <div class="manifesto-header reveal">
+      <div class="section-kicker center">Her Philosophy</div>
+      <h2 class="section-title" style="text-align:center;">The Pillars of <em>Her Vision</em></h2>
+      <p style="color:rgba(255,255,255,0.4);max-width:520px;margin:0 auto;line-height:1.8;font-size:0.95rem;">Three principles that guide every decision, every contract, every step forward.</p>
+    </div>
+    <div class="manifesto-grid">
+
+      <div class="manifesto-card reveal d1" data-manifesto>
+        <div class="mc-number">01</div>
+        <div class="mc-icon"><i class="fas fa-fire-alt"></i></div>
+        <div class="mc-title">Purposeful Urgency</div>
+        <p class="mc-text">Every order fulfilled with the conviction that someone's safety, someone's livelihood, depends on it arriving on time. Urgency is not stress — it is respect for the people we serve.</p>
+        <span class="mc-accent">Core Mandate</span>
+      </div>
+
+      <div class="manifesto-card reveal d2" data-manifesto>
+        <div class="mc-number">02</div>
+        <div class="mc-icon"><i class="fas fa-seedling"></i></div>
+        <div class="mc-title">Radical Transformation</div>
+        <p class="mc-text">True empowerment isn't a policy. It's a woman from Thaba Chweu sitting at the table, owning the supply, driving the deal. Real change begins where it is most difficult to achieve.</p>
+        <span class="mc-accent">Living Proof</span>
+      </div>
+
+      <div class="manifesto-card reveal d3" data-manifesto>
+        <div class="mc-number">03</div>
+        <div class="mc-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="mc-title">Uncompromised Integrity</div>
+        <p class="mc-text">In an industry where safety is life or death, the quality of every product we supply carries the full weight of our name. We never cut corners — not on product, not on principle.</p>
+        <span class="mc-accent">Non-Negotiable</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     3. QUOTE MARQUEE
+============================================= -->
+<div class="quote-marquee-wrap">
+  <div class="qm-fade-l"></div>
+  <div class="qm-fade-r"></div>
+  <div class="qm-track" id="qmTrack"></div>
+</div>
+
+<!-- =============================================
+     4. IMPACT NUMBERS
+============================================= -->
+<section id="impact">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:4rem;" class="reveal">
+      <div class="section-kicker center">By The Numbers</div>
+      <h2 class="section-title" style="text-align:center;">Impact <em>That Counts</em></h2>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="impact-item">
+        <div class="impact-divider"></div>
+        <span class="ii-value" data-count="500" data-suffix="+">0+</span>
+        <div class="ii-label">Products Supplied</div>
+        <div class="ii-desc">PPE, consumables & industrial essentials</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-divider"></div>
+        <span class="ii-value" data-count="8" data-suffix="+">0+</span>
+        <div class="ii-label">Years in Operation</div>
+        <div class="ii-desc">Building trust since 2016</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-divider"></div>
+        <span class="ii-value" data-count="1" data-suffix="">0</span>
+        <div class="ii-label">B-BBEE Level</div>
+        <div class="ii-desc">Highest contributor status</div>
+      </div>
+      <div class="impact-item">
+        <span class="ii-value" data-count="100" data-suffix="%">0%</span>
+        <div class="ii-label">Women Owned</div>
+        <div class="ii-desc">Leading by example, every day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     5. PHILOSOPHY BANNER
+============================================= -->
+<section id="philosophy-banner">
+  <div class="pb-bg" id="pbBg"></div>
+  <div class="pb-geo"></div>
+  <div class="pb-corner tl"></div>
+  <div class="pb-corner tr"></div>
+  <div class="pb-corner bl"></div>
+  <div class="pb-corner br"></div>
+  <div class="pb-content reveal">
+    <div class="pb-chapter">A Manifesto In Action</div>
+    <blockquote class="pb-quote">
+      "We did not enter mining supply to <strong>survive</strong> — we entered it to <strong>transform</strong> what survival looks like for the next generation of Black women in this country."
+    </blockquote>
+    <div class="pb-attribution">— Miss Marumo Mkhonto · Founder, Magadine Business Enterprise</div>
+  </div>
+</section>
+
+<!-- =============================================
+     6. AWARDS & RECOGNITION
+============================================= -->
+<section id="awards">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:5rem;">
+      <div class="reveal-l">
+        <div class="section-kicker">Honours & Recognition</div>
+        <h2 class="section-title">Celebrated <em>&<br>Recognised</em></h2>
+      </div>
+      <div class="reveal-r">
+        <p style="color:rgba(255,255,255,0.42);font-size:0.95rem;line-height:1.85;">
+          Miss Mkhonto's trailblazing leadership has been recognised by industry bodies, government, and the entrepreneurial community across South Africa — a testament to impact built without compromise.
+        </p>
+      </div>
+    </div>
+    <div class="awards-grid">
+
+      <div class="award-card reveal d1">
+        <div class="award-icon">🏆</div>
+        <div class="award-body">
+          <div class="award-year">2023 · JOHANNESBURG</div>
+          <div class="award-title">Women in Mining Leadership Award</div>
+          <div class="award-body-text">Recognised by the Women in Mining SA initiative for exceptional contribution to transformation and supply chain excellence in extractive industries.</div>
+          <span class="award-badge"><i class="fas fa-star"></i> Industry Excellence</span>
+        </div>
+      </div>
+
+      <div class="award-card reveal d2">
+        <div class="award-icon">🌟</div>
+        <div class="award-body">
+          <div class="award-year">2022 · LIMPOPO</div>
+          <div class="award-title">Limpopo Women Entrepreneur of the Year</div>
+          <div class="award-body-text">Provincial recognition from the Department of Economic Development honouring outstanding growth and community impact within the Greater Tubatse corridor.</div>
+          <span class="award-badge"><i class="fas fa-certificate"></i> Government Honour</span>
+        </div>
+      </div>
+
+      <div class="award-card reveal d3">
+        <div class="award-icon">💎</div>
+        <div class="award-body">
+          <div class="award-year">2021 · NATIONAL</div>
+          <div class="award-title">B-BBEE Level 1 Contributor Certification</div>
+          <div class="award-body-text">Achieved South Africa's highest BEE contributor status — opening national procurement doors and positioning Magadine as the preferred supplier for major corporates.</div>
+          <span class="award-badge"><i class="fas fa-check-circle"></i> Verified Status</span>
+        </div>
+      </div>
+
+      <div class="award-card reveal d4">
+        <div class="award-icon">📣</div>
+        <div class="award-body">
+          <div class="award-year">2024 · NATIONAL MEDIA</div>
+          <div class="award-title">Forbes Africa 30 Remarkable Women Feature</div>
+          <div class="award-body-text">Named among the continent's most impactful women in business for 2024, joining a select cohort of African women redefining entrepreneurial excellence.</div>
+          <span class="award-badge"><i class="fas fa-globe-africa"></i> Continental Profile</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     7. EXPERTISE SKILLS
+============================================= -->
+<section id="expertise">
+  <div class="container">
+    <div class="expertise-layout">
+      <div class="reveal-l">
+        <div class="section-kicker">Competencies</div>
+        <h2 class="expertise-tagline">The art of <em>knowing your industry</em> inside out.</h2>
+        <p class="expertise-text">
+          From PPE specification to complex procurement negotiation — Miss Mkhonto's expertise spans the full supply chain. She does not manage from a distance; she knows every product, every regulation, every mine she serves.
+        </p>
+        <p class="expertise-text">
+          This is not a desk job. It is a daily exercise in precision, relationship, and relentless standard-setting.
+        </p>
+        <a href="#contact" class="expertise-cta">
+          Work With Marumo <i class="fas fa-long-arrow-alt-right"></i>
+        </a>
+      </div>
+      <div class="skill-list reveal-r" id="skillList">
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Mining Supply Chain</span>
+            <span class="skill-pct">96%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill gold" data-width="96"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">PPE & Safety Equipment</span>
+            <span class="skill-pct">98%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill gold" data-width="98"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">B-BBEE Compliance & Transformation</span>
+            <span class="skill-pct">100%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill green" data-width="100"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Procurement Negotiation</span>
+            <span class="skill-pct">91%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill green" data-width="91"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Manufacturing & Production</span>
+            <span class="skill-pct">85%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill gold" data-width="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Strategic Business Development</span>
+            <span class="skill-pct">93%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill green" data-width="93"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     8. TESTIMONIALS
+============================================= -->
+<section id="testimonials">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:4rem;" class="reveal">
+      <div class="section-kicker center">Voices of Trust</div>
+      <h2 class="section-title" style="text-align:center;">What They <em>Say</em></h2>
+      <p style="color:rgba(255,255,255,0.35);font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;font-family:'Space Mono',monospace;margin-top:8px;">↻ Hover each card to reveal more</p>
+    </div>
+    <div class="testi-grid">
+
+      <div class="testi-card reveal d1">
+        <div class="testi-inner">
+          <div class="testi-front">
+            <div class="testi-quote-mark">"</div>
+            <div class="testi-text">Magadine never lets us down. When we need PPE at short notice in the field, Miss Mkhonto's team delivers. That kind of reliability is irreplaceable in mining.</div>
+            <div class="testi-person">
+              <div class="testi-avatar">TM</div>
+              <div>
+                <div class="testi-name">Thabo Molefe</div>
+                <div class="testi-role">Safety Manager · Tubatse Chrome Mine</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-back">
+            <div class="testi-back-icon">⛏️</div>
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-back-title">Trusted Supplier</div>
+            <div class="testi-back-text">Magadine has been our preferred PPE supplier for 4 years. Zero failed deliveries. Zero compromised standards.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal d2">
+        <div class="testi-inner">
+          <div class="testi-front">
+            <div class="testi-quote-mark">"</div>
+            <div class="testi-text">She walks into a room and commands it — not with aggression, but with absolute preparedness. Her knowledge of this industry rivals veterans with 30 years in the sector.</div>
+            <div class="testi-person">
+              <div class="testi-avatar">NS</div>
+              <div>
+                <div class="testi-name">Nomvula Sithole</div>
+                <div class="testi-role">Procurement Director · Limpopo Gov.</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-back">
+            <div class="testi-back-icon">👑</div>
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-back-title">Industry Titan</div>
+            <div class="testi-back-text">An extraordinary business mind. Marumo represents the best of what Black women entrepreneurship looks like in South Africa today.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal d3">
+        <div class="testi-inner">
+          <div class="testi-front">
+            <div class="testi-quote-mark">"</div>
+            <div class="testi-text">Magadine's B-BBEE Level 1 status was the first thing that caught our attention. Miss Mkhonto's professionalism sealed the deal. Every order since has exceeded expectations.</div>
+            <div class="testi-person">
+              <div class="testi-avatar">KD</div>
+              <div>
+                <div class="testi-name">Kagiso Dlamini</div>
+                <div class="testi-role">CEO · Steelpoort Construction Group</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-back">
+            <div class="testi-back-icon">🤝</div>
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-back-title">Long-Term Partner</div>
+            <div class="testi-back-text">We've renewed our supplier agreement with Magadine three times. The relationship just gets better — and the standard never drops.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     9. ARTICLE PAGE-FLIP MODAL
+============================================= -->
+<div class="article-modal-overlay" id="articleModal">
+  <button class="art-close-btn" id="modalClose" title="Close article">
+    <i class="fas fa-times"></i>
+  </button>
+  <div class="article-modal-book" id="modalBook">
+    <!-- Back cover (base layer) -->
+    <div class="page-back-cover">
+      <div style="opacity:0.15;font-family:'Bebas Neue',sans-serif;font-size:8rem;color:var(--gold-light);letter-spacing:0.05em;">MAGADINE</div>
+    </div>
+
+    <!-- Mid page -->
+    <div class="book-page page-mid" id="pageMid"></div>
+
+    <!-- Spread (open state — visible after flip) -->
+    <div class="page-spread">
+      <div class="book-spine"></div>
+      <div class="spread-left">
+        <div class="art-pub-badge" id="artPub">Publication · Year</div>
+        <div class="art-headline" id="artHeadline">Article Title</div>
+        <div class="art-byline" id="artByline">By the Editorial Team</div>
+        <div class="art-divider"></div>
+        <div class="art-body" id="artBody"></div>
+        <div class="page-num">— 1 —</div>
+      </div>
+      <div class="spread-right">
+        <div id="artBodyRight" class="art-body"></div>
+        <div class="art-cta-wrap" id="artCtas"></div>
+        <div class="page-num">— 2 —</div>
+        <div class="read-progress" id="readProgress"></div>
+      </div>
+    </div>
+
+    <!-- Front cover (flips away) -->
+    <div class="book-page page-front" id="pageFront">
+      <div class="fc-spine"></div>
+      <div class="fc-header">
+        <div class="fc-pub" id="fcPub">Publication</div>
+        <div class="fc-cover-img" id="fcCoverImg"></div>
+        <div class="fc-title" id="fcTitle">Article Title</div>
+        <div class="fc-meta" id="fcMeta">Category · Date</div>
+        <div class="fc-hint"><i class="fas fa-hand-pointer"></i> <span>Flip to read</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Demo trigger button -->
+<section style="background:#050805;padding:80px 0;text-align:center;">
+  <div class="container">
+    <div class="section-kicker center" style="margin-bottom:1rem;">NEW FEATURE DEMO</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;color:#fff;margin-bottom:1rem;">Page-Flip Article <em style="color:var(--gold-light);">Reader</em></h2>
+    <p style="color:rgba(255,255,255,0.4);margin-bottom:2rem;">Click "Read Article" on any press card to experience the animation</p>
+    <button onclick="openArticle({pub:'Business Day · March 2024',headline:'The Women Reshaping Mining Supply in South Africa',byline:'By Staff Reporter, Business Day',img:'',category:'Leadership',date:'March 2024',body:`<p>In a sector long dominated by male voices and corporate giants, Miss Marumo Mkhonto stands as undeniable proof that purposeful vision can disrupt even the most entrenched industries.</p><p>From her base in Steelpoort, Limpopo, she has built Magadine Business Enterprise into one of the region's most trusted mining supply companies — carrying over 500 products and holding South Africa's highest B-BBEE contributor rating.</p>`,pullquote:'She walks into a boardroom with the quiet confidence of someone who has already done the work.',bodyRight:`<p>Miss Mkhonto founded Magadine in 2016 within the Thaba Chweu Municipality — not merely as a commercial venture, but as a declaration that Black women belong at the helm of South Africa's most critical industries.</p><p>Her approach combines meticulous product knowledge with a personal commitment to urgency. Deliveries are never late. Standards are never compromised. Clients are never left wondering.</p><p>Today, she is expanding into construction supply services — and the industry is paying close attention.</p>`,url:'#'})" 
+       style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:16px 40px;border-radius:50px;background:linear-gradient(135deg,#6b8e23,#8B4513);color:#fff;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(107,142,35,0.4);">
+      <i class="fas fa-book-open" style="margin-right:8px;"></i> Open Sample Article
+    </button>
+  </div>
+</section>
+
+<script>
+/* =============================================
+   REVEAL
+============================================= */
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>revObs.observe(el));
+
+/* =============================================
+   QUOTE MARQUEE BUILD
+============================================= */
+(function(){
+  const words = [
+    {t:'Purposeful',accent:false},{t:'·',sep:true},
+    {t:'Urgency',accent:true},{t:'·',sep:true},
+    {t:'Transformation',accent:false},{t:'·',sep:true},
+    {t:'Excellence',accent:true},{t:'·',sep:true},
+    {t:'Integrity',accent:false},{t:'·',sep:true},
+    {t:'Resilience',accent:true},{t:'·',sep:true},
+    {t:'Vision',accent:false},{t:'·',sep:true},
+    {t:'Leadership',accent:true},{t:'·',sep:true},
+  ];
+  const track = document.getElementById('qmTrack');
+  for(let i=0;i<3;i++){
+    words.forEach(w=>{
+      const s = document.createElement('span');
+      if(w.sep){s.className='qm-sep';}
+      else{s.className='qm-word'+(w.accent?' accent':'');s.textContent=w.t;}
+      track.appendChild(s);
+    });
+  }
+})();
+
+/* =============================================
+   MANIFESTO — MAGNETIC MOUSE GLOW
+============================================= */
+document.querySelectorAll('[data-manifesto]').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r = card.getBoundingClientRect();
+    const x = ((e.clientX - r.left)/r.width*100).toFixed(1)+'%';
+    const y = ((e.clientY - r.top)/r.height*100).toFixed(1)+'%';
+    card.style.setProperty('--mx',x);
+    card.style.setProperty('--my',y);
+    /* Tilt */
+    const cx = (e.clientX - r.left - r.width/2)/r.width;
+    const cy = (e.clientY - r.top - r.height/2)/r.height;
+    card.style.transform = `perspective(1000px) rotateX(${-cy*8}deg) rotateY(${cx*8}deg) translateZ(10px)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+  });
+});
+
+/* =============================================
+   DUST PARTICLES
+============================================= */
+(function(){
+  const container = document.getElementById('dustContainer');
+  for(let i=0;i<18;i++){
+    const s = document.createElement('span');
+    const size = Math.random()*4+1;
+    s.style.cssText=`
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${10+Math.random()*15}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    container.appendChild(s);
+  }
+})();
+
+/* =============================================
+   COUNTER ANIMATION
+============================================= */
+function animateCounters(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target = +el.dataset.count;
+    const suffix = el.dataset.suffix||'';
+    let current = 0;
+    const step = target/60;
+    const timer = setInterval(()=>{
+      current = Math.min(current+step,target);
+      el.textContent = Math.floor(current)+suffix;
+      if(current>=target) clearInterval(timer);
+    },25);
+  });
+}
+const impactObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCounters();impactObs.disconnect();}});
+},{threshold:0.3});
+const impactEl = document.getElementById('impact');
+if(impactEl) impactObs.observe(impactEl);
+
+/* =============================================
+   SKILL BARS ANIMATION
+============================================= */
+const skillObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.skill-fill').forEach(bar=>{
+        setTimeout(()=>{ bar.style.width=bar.dataset.width+'%'; },200);
+      });
+      skillObs.disconnect();
+    }
+  });
+},{threshold:0.3});
+const skillEl = document.getElementById('skillList');
+if(skillEl) skillObs.observe(skillEl);
+
+/* =============================================
+   PARALLAX SCROLL
+============================================= */
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY;
+  const far = document.getElementById('layerFar');
+  const mid = document.getElementById('layerMid');
+  const near = document.getElementById('layerNear');
+  if(far) far.style.transform=`translateY(${y*0.05}px)`;
+  if(mid) mid.style.transform=`translateY(${y*0.1}px)`;
+  if(near) near.style.transform=`translateY(${y*0.18}px)`;
+  /* Philosophy banner */
+  const pb = document.getElementById('pbBg');
+  if(pb){
+    const el = document.getElementById('philosophy-banner');
+    if(el){
+      const rect = el.getBoundingClientRect();
+      const prog = -rect.top/(rect.height+window.innerHeight);
+      pb.style.transform=`translateY(${prog*60}px)`;
+    }
+  }
+},{passive:true});
+
+/* =============================================
+   PAGE-FLIP ARTICLE MODAL
+============================================= */
+const modal = document.getElementById('articleModal');
+const pageFront = document.getElementById('pageFront');
+const pageMid = document.getElementById('pageMid');
+
+let flipTimeout;
+
+function openArticle(data){
+  /* Populate cover */
+  document.getElementById('fcPub').textContent = data.pub;
+  document.getElementById('fcTitle').textContent = data.headline;
+  document.getElementById('fcMeta').textContent = data.category + ' · ' + data.date;
+  document.getElementById('fcCoverImg').style.backgroundImage = data.img ? `url(${data.img})` : 'linear-gradient(135deg,rgba(107,142,35,0.3),rgba(139,69,19,0.3))';
+
+  /* Populate spread */
+  document.getElementById('artPub').innerHTML = '<i class="fas fa-newspaper"></i> ' + data.pub;
+  document.getElementById('artHeadline').textContent = data.headline;
+  document.getElementById('artByline').textContent = data.byline;
+
+  let bodyHTML = data.body || '';
+  if(data.pullquote){
+    bodyHTML += `<div class="art-pullquote">${data.pullquote}</div>`;
+  }
+  document.getElementById('artBody').innerHTML = bodyHTML;
+  document.getElementById('artBodyRight').innerHTML = data.bodyRight || '';
+
+  /* CTA buttons */
+  const ctaWrap = document.getElementById('artCtas');
+  ctaWrap.innerHTML = `
+    <a class="art-cta" href="${data.url||'#'}" target="_blank" rel="noopener">
+      <i class="fas fa-external-link-alt"></i> Full Article
+    </a>
+    <button class="art-cta" onclick="closeArticle()" style="background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);">
+      <i class="fas fa-times"></i> Close
+    </button>
+  `;
+
+  /* Reset */
+  pageFront.classList.remove('flipped','flipping');
+  pageMid.classList.remove('flipped');
+
+  /* Open overlay */
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+
+  /* Trigger flip after entry animation */
+  clearTimeout(flipTimeout);
+  flipTimeout = setTimeout(()=>{
+    pageFront.classList.add('flipping');
+    setTimeout(()=>{
+      pageFront.classList.add('flipped');
+      pageMid.classList.add('flipped');
+    },100);
+  },600);
+}
+
+function closeArticle(){
+  pageFront.classList.remove('flipped','flipping');
+  pageMid.classList.remove('flipped');
+  setTimeout(()=>{
+    modal.classList.remove('open');
+    document.body.style.overflow='';
+  },500);
+}
+
+document.getElementById('modalClose').addEventListener('click',closeArticle);
+modal.addEventListener('click',e=>{ if(e.target===modal) closeArticle(); });
+
+/* Expose globally for book cards in original page */
+window.openArticle = openArticle;
+window.closeArticle = closeArticle;
+
+/* keyboard close */
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeArticle(); });
+</script>
+</body>
+</htmlm

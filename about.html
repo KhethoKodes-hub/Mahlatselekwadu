@@ -294,10 +294,10 @@ body {
   position: absolute; inset: 0;
   background-image: url('./assets/abouthero.png');
   background-size: cover; background-position: center;
-  z-index: 1; transition: filter 0.6s ease;
+  z-index: 1;
 }
-[data-theme="dark"] .hero-bg-image { filter: brightness(0.38) saturate(0.7); }
-[data-theme="light"] .hero-bg-image { filter: brightness(0.65) saturate(0.8); }
+[data-theme="dark"] .hero-bg-image { filter: none; }
+[data-theme="light"] .hero-bg-image { filter: none; }
 .hero-overlay {
   position: absolute; inset: 0;
   background: var(--hero-overlay); z-index: 2;
@@ -941,6 +941,8 @@ body {
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About</a>
+      <a href="profile.html">Brand Profiling</a>
+
       <a href="services.html">Services</a>
       <a href="contact.html">Contact</a>
       <a href="contact.html#contactForm" class="nav-cta">Get Quote</a>
@@ -991,9 +993,9 @@ body {
       <span class="title-gradient">Story &amp;</span>
       <span class="title-ghost">Purpose</span>
     </h1>
-    <p class="page-subtitle">
+    <!--<p class="page-subtitle">
       100% Black Woman Owned &amp; Led — built on integrity, driven by urgency, and committed to empowering South Africa's mining industry.
-    </p>
+    </p>-->
   </div>
 
   <div class="scroll-hint">
@@ -1004,7 +1006,7 @@ body {
 
 <!-- =====================================================
      HAZARD TAPE
-====================================================== -->
+====================================================== 
 <div class="tape-section">
   <div class="tape-fade-l"></div>
   <div class="tape-fade-r"></div>
@@ -1013,11 +1015,11 @@ body {
       <div class="tape-inner tape-march" id="tape1"></div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- =====================================================
      MARQUEE STRIP
-====================================================== -->
+====================================================== 
 <div class="marquee-strip">
   <div class="marquee-wrap">
     <div class="marquee-track">
@@ -1029,7 +1031,6 @@ body {
       <div class="m-item"><i class="fas fa-industry"></i><span>Mining Supply</span><span class="m-dot"></span></div>
       <div class="m-item"><i class="fas fa-shield-alt"></i><span>Safety First</span><span class="m-dot"></span></div>
       <div class="m-item"><i class="fas fa-map-marker-alt"></i><span>Steelpoort · Thaba Chweu</span><span class="m-dot"></span></div>
-      <!-- duplicate -->
       <div class="m-item"><i class="fas fa-female"></i><span>Women Empowerment</span><span class="m-dot"></span></div>
       <div class="m-item"><i class="fas fa-certificate"></i><span>B-BBEE Level 1</span><span class="m-dot"></span></div>
       <div class="m-item"><i class="fas fa-handshake"></i><span>Integrity &amp; Honesty</span><span class="m-dot"></span></div>
@@ -1040,7 +1041,7 @@ body {
       <div class="m-item"><i class="fas fa-map-marker-alt"></i><span>Steelpoort · Thaba Chweu</span><span class="m-dot"></span></div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- =====================================================
      OWNERSHIP SECTION
@@ -1110,7 +1111,7 @@ body {
   </div>
 </section>
 
-<!-- TAPE 2 -->
+<!-- TAPE 2 
 <div class="tape-section" style="height:58px;">
   <div class="tape-fade-l"></div>
   <div class="tape-fade-r"></div>
@@ -1119,7 +1120,7 @@ body {
       <div class="tape-inner tape-march-rev" id="tape2"></div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- =====================================================
      LEADERSHIP SECTION
